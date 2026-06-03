@@ -27,7 +27,7 @@ export default function Footer() {
           <a href="https://github.com/Dekryon" target="_blank" rel="noreferrer">
             GitHub
           </a>
-          <a href="https://linkedin.com/in/gregoryuku" target="_blank" rel="noreferrer">
+          <a href="https://www.linkedin.com/in/gregory-uku-8b632724b" target="_blank" rel="noreferrer">
             LinkedIn
           </a>
           <a href="/resume.pdf" download>Résumé.pdf</a>
@@ -68,7 +68,7 @@ export default function Footer() {
             <Github size={12} />
           </a>
           <a
-            href="https://linkedin.com/in/gregoryuku"
+            href="https://www.linkedin.com/in/gregory-uku-8b632724b"
             target="_blank"
             rel="noreferrer"
             className="hover:text-ember transition-colors"

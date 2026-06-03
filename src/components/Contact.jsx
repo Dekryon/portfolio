@@ -2,9 +2,6 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Mail, Github, Linkedin, Check, Send } from 'lucide-react'
 
-// Formspree endpoint, e.g. https://formspree.io/f/abcdwxyz
-// Set VITE_FORMSPREE_ENDPOINT in the environment (Vercel → Project → Settings → Environment Variables).
-const FORM_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT
 const EMAIL = 'ukugregory@gmail.com'
 
 export default function Contact() {
@@ -16,28 +13,30 @@ export default function Contact() {
   const onChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
 
+  // Fallback: hand off to the visitor's mail client so the message still
+  // reaches the inbox if the serverless email backend is down/unconfigured.
+  const mailtoHandoff = () => {
+    const subject = encodeURIComponent(`Portfolio inquiry — ${form.name || 'someone'}`)
+    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} · ${form.email}`)
+    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`
+  }
+
   const onSubmit = async (e) => {
     e.preventDefault()
     setError(null)
     setSending(true)
     try {
-      if (FORM_ENDPOINT) {
-        const res = await fetch(FORM_ENDPOINT, {
-          method: 'POST',
-          headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify(form)
-        })
-        if (!res.ok) throw new Error('Request failed')
-      } else {
-        // No backend wired yet — hand off to the visitor's mail client so the
-        // message still reaches the inbox instead of silently disappearing.
-        const subject = encodeURIComponent(`Portfolio message from ${form.name || 'someone'}`)
-        const body = encodeURIComponent(`${form.message}\n\n— ${form.name} · ${form.email}`)
-        window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`
-      }
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      })
+      if (!res.ok) throw new Error('Request failed')
       setSent(true)
     } catch {
-      setError(`Couldn't send. Email me directly at ${EMAIL}.`)
+      // Server send failed — fall back to the mail client rather than losing it.
+      mailtoHandoff()
+      setSent(true)
     } finally {
       setSending(false)
     }
@@ -122,11 +121,9 @@ export default function Contact() {
             <p className="font-mono text-[11px] text-ember">{error}</p>
           )}
 
-          {!FORM_ENDPOINT && (
-            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-bone-faint">
-              // opens your mail app · set VITE_FORMSPREE_ENDPOINT for inline send
-            </p>
-          )}
+          <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-bone-faint">
+            // goes straight to my inbox · I read everything
+          </p>
         </motion.form>
 
         {/* Side direct links */}
@@ -151,9 +148,9 @@ export default function Contact() {
             external
           />
           <DirectLink
-            href="https://linkedin.com/in/gregoryuku"
+            href="https://www.linkedin.com/in/gregory-uku-8b632724b"
             label="LinkedIn"
-            value="linkedin.com/in/gregoryuku"
+            value="linkedin.com/in/gregory-uku"
             icon={Linkedin}
             external
           />

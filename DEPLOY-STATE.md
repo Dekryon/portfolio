@@ -19,8 +19,9 @@ The site **is deployed and live**. The earlier note that the Vercel deploy
   (the `gregoryuku` GitHub username does not exist).
 - Pointed `og:url` / `canonical` / share images at the real production URL
   instead of the not-yet-owned `gregoryuku.com`.
-- Wired the contact form for real (Formspree via `VITE_FORMSPREE_ENDPOINT`,
-  with a `mailto:` fallback). See "Contact form" below.
+- Wired the contact form for real: a Vercel Serverless Function (`api/contact.js`)
+  emails submissions via Resend, with a `mailto:` fallback. See "Contact form" below.
+- Updated LinkedIn links to the real profile (`/in/gregory-uku-8b632724b`).
 - Replaced dead `#` project links: live ones now point at real URLs
   (portfolio repo + live site, qualityautosignatures.com); the rest render
   no dead buttons.
@@ -35,17 +36,17 @@ file, push, and Vercel picks it up automatically.
 - `resume.pdf` — until added, "Download Résumé" links 404
 - `og-image.jpg` (1200×630) — until added, social share previews are blank
 
-### 2. Contact form backend
-The form works today by opening the visitor's mail client. To send inline:
-1. Create a free form at https://formspree.io → copy the endpoint
-   (`https://formspree.io/f/XXXX`).
+### 2. Contact form backend (Resend API key)
+The form POSTs to `api/contact.js` (Vercel Function) → Resend → your inbox, and
+falls back to the visitor's mail client if the key is missing. To activate
+inline sending:
+1. Sign up at https://resend.com (free) → create an API key (`re_...`).
 2. In Vercel → project `portfolio` → Settings → Environment Variables, add
-   `VITE_FORMSPREE_ENDPOINT` = that URL.
-3. Redeploy. The form then POSTs directly, no mail client needed.
+   `RESEND_API_KEY` = that key.
+3. Redeploy. Submissions then land directly in `ukugregory@gmail.com`.
 
-### 3. Verify / set the LinkedIn URL
-Links point to `linkedin.com/in/gregoryuku` — confirm that vanity URL is yours
-(GitHub had to move to `Dekryon`; LinkedIn may differ).
+Subject line is `🔴 Portfolio inquiry — <name>`. Gmail filter to prioritize:
+search `subject:"Portfolio inquiry"` → Create filter → Star + Mark important + Label.
 
 ## Domain decision (optional)
 

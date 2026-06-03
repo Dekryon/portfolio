@@ -89,20 +89,31 @@ All content lives in `src/data/` as plain JS — no JSON gymnastics, no CMS:
 
 ## Wiring the contact form
 
-The form (`Contact.jsx`) is already wired for **Formspree** via an environment
-variable, with a `mailto:` fallback so it works even before you configure a
-backend.
+The form (`Contact.jsx`) POSTs to a Vercel Serverless Function at
+`api/contact.js`, which emails the submission to `ukugregory@gmail.com` via
+[Resend](https://resend.com). If that call fails (backend down or the API key
+isn't set yet) it falls back to opening the visitor's mail client, so a message
+is never silently lost.
 
-1. Create a free form at https://formspree.io and copy its endpoint
-   (`https://formspree.io/f/XXXX`).
-2. Add an environment variable named `VITE_FORMSPREE_ENDPOINT` set to that URL:
-   - **Local:** create a `.env.local` file with
-     `VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/XXXX`
-   - **Vercel:** Project → Settings → Environment Variables → add the same key.
-3. Redeploy. The form now POSTs directly to Formspree.
+**One-time setup:**
+1. Sign up at https://resend.com (free) and create an API key (`re_...`).
+2. In Vercel → project `portfolio` → Settings → Environment Variables, add
+   `RESEND_API_KEY` = that key. Redeploy.
+3. Done — submissions now land directly in the inbox.
 
-If `VITE_FORMSPREE_ENDPOINT` is unset, submitting opens the visitor's mail
-client pre-filled to `ukugregory@gmail.com` instead.
+With no custom domain, Resend sends from `onboarding@resend.dev` to your own
+account email (which is the recipient here), so no domain verification is
+needed. Once you own a domain, verify it in Resend and update `FROM_EMAIL` in
+`api/contact.js` to send from your own address.
+
+**Local testing:** `RESEND_API_KEY` works with `vercel dev` (the Vite `npm run
+dev` server alone won't run the `/api` function — use `vercel dev` to exercise
+it locally). Create a `.env.local` with `RESEND_API_KEY=re_...`.
+
+### Inbox priority (Gmail)
+Every inquiry uses the subject `🔴 Portfolio inquiry — <name>`. To auto-prioritize:
+Gmail → Search `subject:"Portfolio inquiry"` → **Create filter** → check
+*Star it*, *Mark as important*, and *Apply label* (e.g. `Portfolio`).
 
 ---
 
