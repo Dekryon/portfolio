@@ -2,6 +2,29 @@
 
 Drop your real project screenshots here. The portfolio will pick them up automatically — until they exist, it falls back to a hand-drawn CSS mock UI that matches the project type.
 
+## Fastest way: capture them automatically
+
+From the project root, on a machine with internet access:
+
+```bash
+npm install
+npx playwright install chromium
+npm run screenshots
+```
+
+This runs `scripts/capture-screenshots.mjs`, which opens each **live** project
+URL and saves it here at 1600×1000 with the right filename:
+
+| Project | URL captured | File |
+|---|---|---|
+| Quality Auto Signatures | qualityautosignatures.com | `quality-auto.jpg` |
+| This Portfolio | portfolio-qualityauto-signatures.vercel.app | `portfolio.jpg` |
+| AI Drive-Thru (Ordo) | ordo-portal-qualityauto-signatures.vercel.app | `drive-thru.jpg` |
+
+Then review the files and `git add public/projects && git commit && git push`.
+The other projects (no live URL) keep their CSS mock UI. Edit the `SHOTS` array
+in the script to add or change URLs.
+
 ## File names to use
 
 | Project                             | File name                  | Recommended size |
