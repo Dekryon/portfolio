@@ -1,60 +1,67 @@
 # Deploy State · pick up here
 
-## ✅ Done
-- Code finished (v3.3)
-- Git initialized on `main`
-- Initial commit pushed to **https://github.com/Dekryon/portfolio** (public)
-- Build verified: 362 KB gzipped JS, no errors
-- Vercel team identified: "Gregory's projects" (slug `qualityauto-signatures`)
-- Domain prices checked
+_Last audited: 2026-06-03_
 
-## ⏳ Stopped here · Vercel deploy not finished
+## ✅ Live
 
-API errored mid-flight. Three ways to resume:
+The site **is deployed and live**. The earlier note that the Vercel deploy
+"never finished" was wrong — it shipped.
 
-### Easiest · Vercel CLI from this folder
-```bash
-cd "C:\Claude code\portfolio"
-vercel login                                       # if needed
-vercel link --yes --scope qualityauto-signatures   # link to team
-vercel --prod                                       # ship
-```
+- **Production:** https://portfolio-qualityauto-signatures.vercel.app
+- **Repo:** https://github.com/Dekryon/portfolio (public)
+- **Vercel team:** "Gregory's projects" (`qualityauto-signatures`), project `portfolio`
+- **CI/CD:** GitHub integration is connected. Every push to `main` auto-deploys
+  to production; PRs get preview URLs. No manual `vercel` command needed.
+- **Build:** clean — 362 KB gzipped JS.
 
-### Cleanest long-term · GitHub integration via dashboard
-1. Open https://vercel.com/new
-2. Import `Dekryon/portfolio`
-3. Click Deploy (auto-detects Vite, no config)
-4. Future `git push` to main auto-deploys; PRs get preview URLs
+## ✅ Done in the latest audit pass
+- Fixed broken social links: `github.com/gregoryuku` → `github.com/Dekryon`
+  (the `gregoryuku` GitHub username does not exist).
+- Pointed `og:url` / `canonical` / share images at the real production URL
+  instead of the not-yet-owned `gregoryuku.com`.
+- Wired the contact form for real (Formspree via `VITE_FORMSPREE_ENDPOINT`,
+  with a `mailto:` fallback). See "Contact form" below.
+- Replaced dead `#` project links: live ones now point at real URLs
+  (portfolio repo + live site, qualityautosignatures.com); the rest render
+  no dead buttons.
 
-### Try MCP again
-Use the Vercel MCP `deploy_to_vercel` tool if available.
+## ⏳ Still to do
 
----
+### 1. Drop in real assets (`/public/`)
+Each is referenced in code and currently falls back to a placeholder. Add the
+file, push, and Vercel picks it up automatically.
+- `portrait.jpg` (4:5) — see `public/portrait-instructions.md`
+- `projects/*.jpg` — see `public/projects/README.md` for filenames
+- `resume.pdf` — until added, "Download Résumé" links 404
+- `og-image.jpg` (1200×630) — until added, social share previews are blank
 
-## Domain decision needed
+### 2. Contact form backend
+The form works today by opening the visitor's mail client. To send inline:
+1. Create a free form at https://formspree.io → copy the endpoint
+   (`https://formspree.io/f/XXXX`).
+2. In Vercel → project `portfolio` → Settings → Environment Variables, add
+   `VITE_FORMSPREE_ENDPOINT` = that URL.
+3. Redeploy. The form then POSTs directly, no mail client needed.
 
-Recommendation: keep `3ddes.com` as the poems site (already established artist brand). Get a separate `.com` for the dev portfolio.
+### 3. Verify / set the LinkedIn URL
+Links point to `linkedin.com/in/gregoryuku` — confirm that vanity URL is yours
+(GitHub had to move to `Dekryon`; LinkedIn may differ).
 
-| Domain | Price/yr | Pick? |
+## Domain decision (optional)
+
+`gregoryuku.com` is **not purchased yet**. The site runs fine on the
+`.vercel.app` URL. If you buy it later:
+1. Add the domain in Vercel → project `portfolio` → Settings → Domains.
+2. Update `og:url` / `canonical` in `index.html` back to `https://gregoryuku.com/`.
+3. Update the `portfolio` project's `demo`/`label` in `src/data/projects.js`.
+
+| Domain | Price/yr | Note |
 |---|---|---|
-| **gregoryuku.com** | $11.25 | ✅ recommended |
+| **gregoryuku.com** | $11.25 | recommended |
 | gregoryuku.dev | $9.99 | strong alt |
-| gregoryuku.io | $37.99 | too expensive |
 | gregoryuku.me | $12.99 | weaker fit |
 
-Cross-link the two sites' footers when both are live.
-
----
-
-## Still to drop into `/public/`
-- `portrait.jpg` (4:5)
-- `projects/*.jpg` (see `public/projects/README.md` for filenames)
-- `resume.pdf`
-- `og-image.jpg` (1200×630)
-
-Each one Vercel will pick up automatically on next push.
-
----
-
 ## Optional GitHub rename
-`gregoryuku` username is available. Settings → change `Dekryon` → `gregoryuku`. All repo URLs auto-redirect. Cleaner for portfolio links.
+`Dekryon` → `gregoryuku` (if available) would make repo URLs cleaner. All repo
+URLs auto-redirect after a rename — but then revert the link fixes above back
+to `gregoryuku`.

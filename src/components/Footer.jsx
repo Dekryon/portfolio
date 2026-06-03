@@ -24,7 +24,7 @@ export default function Footer() {
         </FooterCol>
         <FooterCol title="Direct">
           <a href="mailto:ukugregory@gmail.com">ukugregory@gmail.com</a>
-          <a href="https://github.com/gregoryuku" target="_blank" rel="noreferrer">
+          <a href="https://github.com/Dekryon" target="_blank" rel="noreferrer">
             GitHub
           </a>
           <a href="https://linkedin.com/in/gregoryuku" target="_blank" rel="noreferrer">
@@ -59,7 +59,7 @@ export default function Footer() {
             <Mail size={12} />
           </a>
           <a
-            href="https://github.com/gregoryuku"
+            href="https://github.com/Dekryon"
             target="_blank"
             rel="noreferrer"
             className="hover:text-ember transition-colors"
