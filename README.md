@@ -38,7 +38,18 @@ npm run preview
 Drop a real 4:5 portrait at `public/portrait.jpg`. See `public/portrait-instructions.md` for prompt + sizing tips. Until you do, a geometric SVG placeholder fills the slot.
 
 ### 2. Project screenshots
-Drop screenshots into `public/projects/` using the filenames in `public/projects/README.md`. Until you do, each project renders a tailored CSS mock UI (dashboard / marketing / terminal).
+Capture them automatically (on a machine with internet):
+
+```bash
+npx playwright install chromium
+npm run screenshots
+```
+
+This opens each live project URL and saves it into `public/projects/` at the
+right size and filename (see `scripts/capture-screenshots.mjs`). Or drop your
+own screenshots in manually using the filenames in `public/projects/README.md`.
+Until a file exists, each project renders a tailored CSS mock UI
+(dashboard / marketing / terminal).
 
 ### 3. Resume
 Drop your CV at `public/resume.pdf`. All "Download Resume" buttons pick it up automatically.
