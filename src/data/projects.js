@@ -23,8 +23,8 @@ export const PROJECTS = [
     learned:
       'Designing for uncertainty · when an AI is unsure, the UX matters more than the model. A clear confirmation loop beats raw accuracy every time.',
     status: 'In Development',
-    github: '#',
-    demo: '#',
+    github: null,
+    demo: null,
     accent: '#ff5b22',
     image: '/projects/drive-thru.jpg',
     mockType: 'dashboard',
@@ -54,12 +54,12 @@ export const PROJECTS = [
     learned:
       'For a buying decision this big, presentation IS the product. Spacing, typography, and clear photos do more than any feature you can add.',
     status: 'Completed',
-    github: '#',
-    demo: '#',
+    github: null,
+    demo: 'https://qualityautosignatures.com',
     accent: '#d4a574',
     image: '/projects/quality-auto.jpg',
     mockType: 'marketing',
-    label: 'qualityauto.ng'
+    label: 'qualityautosignatures.com'
   },
   {
     id: 'portfolio',
@@ -85,12 +85,12 @@ export const PROJECTS = [
     learned:
       'A portfolio IS a product. Motion and typography do the persuading before any copy is read.',
     status: 'Completed',
-    github: '#',
-    demo: '#',
+    github: 'https://github.com/Dekryon/portfolio',
+    demo: 'https://portfolio-qualityauto-signatures.vercel.app',
     accent: '#a5f3fc',
     image: '/projects/portfolio.jpg',
     mockType: 'marketing',
-    label: 'gregoryuku.com'
+    label: 'portfolio-qualityauto-signatures.vercel.app'
   },
   {
     id: 'grades-manager',
@@ -116,7 +116,7 @@ export const PROJECTS = [
     learned:
       'Even a console app benefits from a real UX pass. Loops, prompts, and error messages are interface.',
     status: 'Completed',
-    github: '#',
+    github: null,
     demo: null,
     accent: '#7cffcb',
     image: '/projects/grades.jpg',
@@ -147,8 +147,8 @@ export const PROJECTS = [
     learned:
       'Fundamentals scale. Knowing the platform makes every framework cheaper to learn.',
     status: 'Completed',
-    github: '#',
-    demo: '#',
+    github: null,
+    demo: null,
     accent: '#c084fc',
     image: '/projects/web-coursework.jpg',
     mockType: 'marketing',
@@ -178,7 +178,7 @@ export const PROJECTS = [
     learned:
       'Agents are not magic. They are software with a probabilistic step inside · the engineering rules still apply.',
     status: 'Concept',
-    github: '#',
+    github: null,
     demo: null,
     accent: '#a78bfa',
     image: '/projects/ai-agents.jpg',
@@ -209,8 +209,8 @@ export const PROJECTS = [
     learned:
       'A great template removes 80% of decisions for the owner without removing 80% of the value.',
     status: 'Prototype',
-    github: '#',
-    demo: '#',
+    github: null,
+    demo: null,
     accent: '#34d399',
     image: '/projects/landing-kit.jpg',
     mockType: 'marketing',
@@ -240,8 +240,8 @@ export const PROJECTS = [
     learned:
       'Specialization beats generality for small audiences. A tool that knows my domain saves real time.',
     status: 'Prototype',
-    github: '#',
-    demo: '#',
+    github: null,
+    demo: null,
     accent: '#22d3ee',
     image: '/projects/study.jpg',
     mockType: 'dashboard',

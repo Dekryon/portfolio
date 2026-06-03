@@ -2,8 +2,15 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Mail, Github, Linkedin, Check, Send } from 'lucide-react'
 
+// Formspree endpoint, e.g. https://formspree.io/f/abcdwxyz
+// Set VITE_FORMSPREE_ENDPOINT in the environment (Vercel → Project → Settings → Environment Variables).
+const FORM_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT
+const EMAIL = 'ukugregory@gmail.com'
+
 export default function Contact() {
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState(null)
   const [form, setForm] = useState({ name: '', email: '', message: '' })
 
   const onChange = (e) =>
@@ -11,8 +18,29 @@ export default function Contact() {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    await new Promise((r) => setTimeout(r, 700))
-    setSent(true)
+    setError(null)
+    setSending(true)
+    try {
+      if (FORM_ENDPOINT) {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify(form)
+        })
+        if (!res.ok) throw new Error('Request failed')
+      } else {
+        // No backend wired yet — hand off to the visitor's mail client so the
+        // message still reaches the inbox instead of silently disappearing.
+        const subject = encodeURIComponent(`Portfolio message from ${form.name || 'someone'}`)
+        const body = encodeURIComponent(`${form.message}\n\n— ${form.name} · ${form.email}`)
+        window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`
+      }
+      setSent(true)
+    } catch {
+      setError(`Couldn't send. Email me directly at ${EMAIL}.`)
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -73,13 +101,15 @@ export default function Contact() {
 
           <button
             type="submit"
-            disabled={sent}
-            className={`btn-ember group ${sent ? 'opacity-70 cursor-default' : ''}`}
+            disabled={sent || sending}
+            className={`btn-ember group ${sent || sending ? 'opacity-70 cursor-default' : ''}`}
           >
             {sent ? (
               <>
                 <Check size={14} /> Sent · talk soon
               </>
+            ) : sending ? (
+              <>Sending…</>
             ) : (
               <>
                 Send message
@@ -88,9 +118,15 @@ export default function Contact() {
             )}
           </button>
 
-          <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-bone-faint">
-            // wire to Formspree / EmailJS / Netlify · README
-          </p>
+          {error && (
+            <p className="font-mono text-[11px] text-ember">{error}</p>
+          )}
+
+          {!FORM_ENDPOINT && (
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-bone-faint">
+              // opens your mail app · set VITE_FORMSPREE_ENDPOINT for inline send
+            </p>
+          )}
         </motion.form>
 
         {/* Side direct links */}
@@ -108,9 +144,9 @@ export default function Contact() {
             icon={Mail}
           />
           <DirectLink
-            href="https://github.com/gregoryuku"
+            href="https://github.com/Dekryon"
             label="GitHub"
-            value="github.com/gregoryuku"
+            value="github.com/Dekryon"
             icon={Github}
             external
           />

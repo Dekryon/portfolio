@@ -89,26 +89,20 @@ All content lives in `src/data/` as plain JS — no JSON gymnastics, no CMS:
 
 ## Wiring the contact form
 
-The form fakes a successful submit (`Contact.jsx`). Wire it for real with:
+The form (`Contact.jsx`) is already wired for **Formspree** via an environment
+variable, with a `mailto:` fallback so it works even before you configure a
+backend.
 
-### Option A — Formspree
-```js
-const onSubmit = async (e) => {
-  e.preventDefault()
-  const res = await fetch('https://formspree.io/f/YOUR_ID', {
-    method: 'POST',
-    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-    body: JSON.stringify(form)
-  })
-  if (res.ok) setSent(true)
-}
-```
+1. Create a free form at https://formspree.io and copy its endpoint
+   (`https://formspree.io/f/XXXX`).
+2. Add an environment variable named `VITE_FORMSPREE_ENDPOINT` set to that URL:
+   - **Local:** create a `.env.local` file with
+     `VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/XXXX`
+   - **Vercel:** Project → Settings → Environment Variables → add the same key.
+3. Redeploy. The form now POSTs directly to Formspree.
 
-### Option B — EmailJS
-See https://www.emailjs.com/docs/examples/reactjs/.
-
-### Option C — Netlify Forms
-Add `data-netlify="true"` and a `name` attribute to the `<form>`.
+If `VITE_FORMSPREE_ENDPOINT` is unset, submitting opens the visitor's mail
+client pre-filled to `ukugregory@gmail.com` instead.
 
 ---
 
