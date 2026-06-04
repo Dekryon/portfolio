@@ -8,7 +8,8 @@ _Last audited: 2026-06-04_
 - **Repo:** https://github.com/Dekryon/portfolio (public)
 - **Vercel project:** `portfolio` in team `qualityauto-signatures`
 - **CI/CD:** push to `main` auto-deploys to prod; PRs get preview URLs.
-- **Build:** clean — 362 KB gzipped JS.
+- **Build:** clean — 342 KB gzipped JS (Three.js / R3F tree-shook out
+  after the hero swap, down from 362 KB).
 - **Real screenshots in place** (4 of 8 cards): `quality-auto.jpg`,
   `portfolio.jpg`, `drive-thru.jpg` (Ordo operator portal),
   `ai-saas-factory.jpg`. The other 4 cards render the hand-coded CSS
@@ -18,11 +19,21 @@ _Last audited: 2026-06-04_
 - **Card content updated:** the 'AI Agent Automation System' concept
   card was replaced with a real **AI SaaS Factory** entry (live demo
   at ai-saas-factory-ten.vercel.app, repo at Dekryon/ai-saas-factory).
-- **Capture script** (`npm run screenshots`) now covers 4 live URLs:
-  qualityautosignatures.com, portfolio (still auth-gated — script skips
-  4xx), ordo-portal, ai-saas-factory. Signal Tracker exists as a deployed
-  Vercel project but was intentionally not added to the portfolio.
-- **Latest commit:** `a683b93` — AI SaaS Factory card swap.
+- **Hero is now a muted-autoplay video** (`public/hero.mp4`, 720x1280,
+  H.264 main, 24s loop, 2.5 MB). Replaces the WebGL icosahedron scene.
+  Poster at `public/hero-poster.jpg`. `VideoHero.jsx` mirrors Scene.jsx
+  API and falls back to the poster image only for
+  `prefers-reduced-motion` and `navigator.connection.saveData`. Scene.jsx
+  kept in repo for a future toggle.
+- **Portrait + grain texture wired:** `public/portrait.jpg` (1200x1500,
+  4:5, sunset street shot) drives the About section; `public/grain.jpg`
+  (256x256 photographed tile texture) drives the body-wide film-grain
+  overlay and the Portrait frame's noise blend.
+- **Capture script** (`npm run screenshots`) covers 4 live URLs.
+  `npm run transcode-hero` (uses ffmpeg-static devDep) re-encodes a new
+  hero source video into `public/hero.mp4` + poster.
+- **Latest commit:** `6069498` — re-shot portfolio.jpg with the new
+  video hero in the projects-grid card.
 
 ## 🔥 Important — one production bug
 
