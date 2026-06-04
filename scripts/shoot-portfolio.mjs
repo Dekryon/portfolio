@@ -33,7 +33,8 @@ const page = await ctx.newPage()
 console.log(`→ ${url}`)
 await page.goto(url, { waitUntil: 'networkidle', timeout: 90000 })
 // Portfolio has a real loader + WebGL hero; give it room to settle.
-// Video hero needs longer to load + play past the intro animation
+// Loader.jsx counts to 100 over ~7s, then Hero entrance animations
+// run another ~3s before the headline + glass card are in. Settle 14s.
 await page.waitForTimeout(14000)
 await page.screenshot({
   path: OUT,
