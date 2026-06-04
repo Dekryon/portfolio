@@ -155,35 +155,35 @@ export const PROJECTS = [
     label: 'coursework.gregoryuku.com'
   },
   {
-    id: 'ai-agent-automation',
-    title: 'AI Agent Automation System',
+    id: 'ai-saas-factory',
+    title: 'AI SaaS Factory',
     category: 'AI',
-    featured: false,
+    featured: true,
     year: '2026',
-    role: 'Concept · Solo',
+    role: 'Solo · Design + Engineering',
     pitch:
-      'A concept for chaining AI agents to run repeatable business operations end-to-end.',
+      'Autonomous AI agent mesh that turns a business idea into a deployable product in minutes.',
     problem:
-      'Small businesses lose hours per week to copy-paste workflows · moving data between email, sheets, and dashboards.',
+      'Going from idea to shipped SaaS takes weeks of repetitive setup · product brief, landing copy, schema, API routes, marketing posts, security checklist. Most of it is the same every time.',
     solution:
-      'A blueprint for an agent runtime that plans, calls tools, retries safely, and reports results. Designed around guard rails: a human approves anything that costs money or sends a message.',
+      'An orchestrator that fans out to builder, marketing, and security agents in parallel, then drops the results into a single dashboard you can review, copy, and deploy.',
     features: [
-      'Plan → act → verify loop',
-      'Tool registry with typed inputs',
-      'Audit log of every action',
-      'Human-in-the-loop approvals',
-      'Cost and rate-limit aware'
+      'Orchestrator → builder · marketing · security in parallel',
+      'Product brief, file structure, landing copy generated on input',
+      'Live deploy feed (v2.4.1 shipped 14s ago style)',
+      'Stats panel · active builders, revenue, ship time',
+      'Open-beta UX with public sign-up'
     ],
-    tech: ['Node.js', 'TypeScript', 'OpenAI API', 'Cron'],
+    tech: ['Next.js', 'TypeScript', 'Anthropic API', 'E2B', 'Supabase', 'Replicate'],
     learned:
-      'Agents are not magic. They are software with a probabilistic step inside · the engineering rules still apply.',
-    status: 'Concept',
-    github: null,
-    demo: null,
+      'Multi-agent works when each agent owns a narrow lane and the orchestrator does the merging. One model trying to do everything gives you tangled prompts.',
+    status: 'In Development',
+    github: 'https://github.com/Dekryon/ai-saas-factory',
+    demo: 'https://ai-saas-factory-ten.vercel.app',
     accent: '#a78bfa',
-    image: '/projects/ai-agents.jpg',
-    mockType: 'dashboard',
-    label: 'agent-runtime · planner'
+    image: '/projects/ai-saas-factory.jpg',
+    mockType: 'marketing',
+    label: 'ai-saas-factory-ten.vercel.app'
   },
   {
     id: 'business-landing',
