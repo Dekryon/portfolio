@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
-import Scene from './Scene.jsx'
+import VideoHero from './VideoHero.jsx'
 
 const ROLES = ['Software Engineer', 'Frontend Developer', 'AI Builder', 'Problem Solver']
 
@@ -49,9 +49,10 @@ export default function Hero() {
       id="top"
       className="relative h-[100svh] min-h-[700px] w-full overflow-hidden"
     >
-      {/* 3D scene */}
+      {/* Video hero (autoplay, muted loop) — Scene.jsx kept around in repo
+          for a future toggle but not rendered. */}
       <div className="absolute inset-0 z-0">
-        <Scene scrollRef={scrollRef} />
+        <VideoHero scrollRef={scrollRef} />
       </div>
 
       {/* Vignette */}
