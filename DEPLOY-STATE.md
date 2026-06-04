@@ -1,68 +1,92 @@
 # Deploy State · pick up here
 
-_Last audited: 2026-06-03_
+_Last audited: 2026-06-04_
 
 ## ✅ Live
 
-The site **is deployed and live**. The earlier note that the Vercel deploy
-"never finished" was wrong — it shipped.
-
 - **Production:** https://portfolio-qualityauto-signatures.vercel.app
 - **Repo:** https://github.com/Dekryon/portfolio (public)
-- **Vercel team:** "Gregory's projects" (`qualityauto-signatures`), project `portfolio`
-- **CI/CD:** GitHub integration is connected. Every push to `main` auto-deploys
-  to production; PRs get preview URLs. No manual `vercel` command needed.
+- **Vercel project:** `portfolio` in team `qualityauto-signatures`
+- **CI/CD:** push to `main` auto-deploys to prod; PRs get preview URLs.
 - **Build:** clean — 362 KB gzipped JS.
+- **Real screenshot in place:** `public/projects/quality-auto.jpg` (the
+  hero of qualityautosignatures.com, captured at 1600×1000 retina).
+- **Latest commit:** `1a4a465` — real Quality Auto screenshot + capture script
+  hardened (per-shot settle time, skips 4xx/5xx pages).
 
-## ✅ Done in the latest audit pass
-- Fixed broken social links: `github.com/gregoryuku` → `github.com/Dekryon`
-  (the `gregoryuku` GitHub username does not exist).
-- Pointed `og:url` / `canonical` / share images at the real production URL
-  instead of the not-yet-owned `gregoryuku.com`.
-- Wired the contact form for real: a Vercel Serverless Function (`api/contact.js`)
-  emails submissions via Resend, with a `mailto:` fallback. See "Contact form" below.
-- Updated LinkedIn links to the real profile (`/in/gregory-uku-8b632724b`).
-- Replaced dead `#` project links: live ones now point at real URLs
-  (portfolio repo + live site, qualityautosignatures.com); the rest render
-  no dead buttons.
+## 🔥 Important — one production bug
 
-## ⏳ Still to do
+The production URL **returns HTTP 401 (Vercel auth wall)** to unauthenticated
+visitors. Your portfolio's own "Live demo" button is sending people to a
+sign-in page, and the screenshot script can't capture the site.
 
-### 1. Drop in real assets (`/public/`)
-Each is referenced in code and currently falls back to a placeholder. Add the
-file, push, and Vercel picks it up automatically.
-- `portrait.jpg` (4:5) — see `public/portrait-instructions.md`
-- `projects/*.jpg` — see `public/projects/README.md` for filenames
-- `resume.pdf` — until added, "Download Résumé" links 404
-- `og-image.jpg` (1200×630) — until added, social share previews are blank
+**Fix (60 seconds):**
+1. https://vercel.com/qualityauto-signatures/portfolio/settings/deployment-protection
+2. Set **Vercel Authentication** to **Disabled** (or "Only Preview Deployments"
+   if you want previews gated but prod open).
+3. Save.
 
-### 2. Contact form backend (Resend API key)
-The form POSTs to `api/contact.js` (Vercel Function) → Resend → your inbox, and
-falls back to the visitor's mail client if the key is missing. To activate
-inline sending:
-1. Sign up at https://resend.com (free) → create an API key (`re_...`).
-2. In Vercel → project `portfolio` → Settings → Environment Variables, add
-   `RESEND_API_KEY` = that key.
-3. Redeploy. Submissions then land directly in `ukugregory@gmail.com`.
+After that:
+- `npm run screenshots` will fill in `public/projects/portfolio.jpg`.
+- The "Live demo" button on the portfolio card will actually open the site.
+
+## ⏳ Still to do · in priority order
+
+### 1. Disable deployment protection (above) — blocks everything else
+### 2. Wire `RESEND_API_KEY` in Vercel
+The contact form already POSTs to `api/contact.js` (Vercel Function) → Resend
+→ inbox, with a `mailto:` fallback when the key isn't set.
+
+1. Sign up at https://resend.com (free; no card required).
+2. Verified-email account already covers sending to your own Gmail — no DNS
+   needed.
+3. Create an API key (`re_...`).
+4. Vercel → project `portfolio` → Settings → Environment Variables → add
+   `RESEND_API_KEY` = that key. Apply to **Production**.
+5. Redeploy (any push, or Vercel UI → Deployments → Redeploy).
 
 Subject line is `🔴 Portfolio inquiry — <name>`. Gmail filter to prioritize:
-search `subject:"Portfolio inquiry"` → Create filter → Star + Mark important + Label.
+search `subject:"Portfolio inquiry"` → Create filter → Star + Mark important.
 
-## Domain decision (optional)
+### 3. Re-shoot screenshots
+After step 1, run from this folder:
+```bash
+npm run screenshots
+git add public/projects && git commit -m "Add portfolio screenshot" && git push
+```
 
-`gregoryuku.com` is **not purchased yet**. The site runs fine on the
-`.vercel.app` URL. If you buy it later:
-1. Add the domain in Vercel → project `portfolio` → Settings → Domains.
-2. Update `og:url` / `canonical` in `index.html` back to `https://gregoryuku.com/`.
-3. Update the `portfolio` project's `demo`/`label` in `src/data/projects.js`.
+### 4. Drop the user-supplied assets in `/public/`
+Each is referenced in code; missing files fall back to placeholders.
+- `portrait.jpg` (4:5) — see `public/portrait-instructions.md`
+- `resume.pdf` — until added, "Download Résumé" 404s
+- `og-image.jpg` (1200×630) — until added, social shares have no preview
 
-| Domain | Price/yr | Note |
+The drive-thru card has no public deployment yet — the CSS dashboard mock
+keeps rendering automatically until a real demo exists.
+
+### 5. Buy a domain (optional but recommended)
+
+All checked via Vercel Domains (2026-06-04):
+
+| Domain | Price/yr | Pick? |
 |---|---|---|
-| **gregoryuku.com** | $11.25 | recommended |
-| gregoryuku.dev | $9.99 | strong alt |
-| gregoryuku.me | $12.99 | weaker fit |
+| **gregoryuku.com** | **$11.25** | ✅ recommended — universal, matches the name, classic |
+| gregoryuku.dev | $9.99 | strong alt — signals "engineer" louder |
+| gregoryuku.app | $9.99 | weakest fit (the portfolio isn't an app) |
+| gregoryuku.me | $12.99 | weaker — `.me` reads more casual |
+| gregoryuku.co | $17.99 | no real benefit over `.com` |
+| gregoryuku.io | $37.99 | overpriced for what it gives |
 
-## Optional GitHub rename
-`Dekryon` → `gregoryuku` (if available) would make repo URLs cleaner. All repo
-URLs auto-redirect after a rename — but then revert the link fixes above back
-to `gregoryuku`.
+After buying:
+1. Vercel → project `portfolio` → Settings → Domains → add the domain.
+   (Vercel-purchased domains auto-wire DNS; no manual records.)
+2. Update `index.html` `og:url` / `canonical` to `https://gregoryuku.com/`.
+3. Update `portfolio` entry in `src/data/projects.js` — `demo` and `label`.
+4. Update `DEPLOY-STATE.md` and `README.md`.
+5. Cross-link from `3ddes.com` footer (your other site).
+
+## Optional · GitHub username rename
+
+`Dekryon` → `gregoryuku` would make repo URLs cleaner. GitHub auto-redirects
+all old URLs, but the Footer + projects.js links would still want updating
+to match. Defer until you've decided.
