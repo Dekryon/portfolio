@@ -23,8 +23,10 @@ const OUT_DIR = join(__dirname, '..', 'public', 'projects')
 // filename → live URL. Filenames match the `image` paths in src/data/projects.js.
 const SHOTS = [
   { name: 'quality-auto.jpg', url: 'https://qualityautosignatures.com', settle: 9000 },
-  { name: 'portfolio.jpg', url: 'https://portfolio-qualityauto-signatures.vercel.app', settle: 5000 }
-  // drive-thru: no public deployment yet — keep the CSS mock fallback
+  { name: 'portfolio.jpg', url: 'https://portfolio-qualityauto-signatures.vercel.app', settle: 5000 },
+  { name: 'drive-thru.jpg', url: 'https://ordo-portal-liart.vercel.app', settle: 5000 },
+  { name: 'ai-saas-factory.jpg', url: 'https://ai-saas-factory-ten.vercel.app', settle: 5000 },
+  { name: 'signal-tracker.jpg', url: 'https://signal-tracker-roan.vercel.app', settle: 5000 }
 ]
 
 const WIDTH = 1600
