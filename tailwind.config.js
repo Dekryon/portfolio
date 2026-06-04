@@ -83,10 +83,12 @@ export default {
         }
       },
       backgroundImage: {
-        'noise':
-          "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E\")",
+        'noise': "url('/grain.jpg')",
         'blend-flame': 'linear-gradient(135deg, #ff5b22 0%, #ff8a5b 35%, #60a5fa 75%, #3b82f6 100%)',
         'blend-tide': 'linear-gradient(135deg, #3b82f6 0%, #60a5fa 35%, #ff8a5b 75%, #ff5b22 100%)'
+      },
+      backgroundSize: {
+        'grain': '200px 200px'
       },
       boxShadow: {
         ember: '0 0 0 1px rgba(255, 91, 34, 0.35), 0 12px 40px -8px rgba(255, 91, 34, 0.4)',
