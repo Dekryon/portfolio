@@ -9,10 +9,20 @@ _Last audited: 2026-06-04_
 - **Vercel project:** `portfolio` in team `qualityauto-signatures`
 - **CI/CD:** push to `main` auto-deploys to prod; PRs get preview URLs.
 - **Build:** clean — 362 KB gzipped JS.
-- **Real screenshot in place:** `public/projects/quality-auto.jpg` (the
-  hero of qualityautosignatures.com, captured at 1600×1000 retina).
-- **Latest commit:** `1a4a465` — real Quality Auto screenshot + capture script
-  hardened (per-shot settle time, skips 4xx/5xx pages).
+- **Real screenshots in place** (4 of 8 cards): `quality-auto.jpg`,
+  `portfolio.jpg`, `drive-thru.jpg` (Ordo operator portal),
+  `ai-saas-factory.jpg`. The other 4 cards render the hand-coded CSS
+  mock (terminal / dashboard / marketing) via the DeviceMockup onError
+  fallback — replace them by dropping a JPEG with the matching filename
+  into `public/projects/`.
+- **Card content updated:** the 'AI Agent Automation System' concept
+  card was replaced with a real **AI SaaS Factory** entry (live demo
+  at ai-saas-factory-ten.vercel.app, repo at Dekryon/ai-saas-factory).
+- **Capture script** (`npm run screenshots`) now covers 4 live URLs:
+  qualityautosignatures.com, portfolio (still auth-gated — script skips
+  4xx), ordo-portal, ai-saas-factory. Signal Tracker exists as a deployed
+  Vercel project but was intentionally not added to the portfolio.
+- **Latest commit:** `a683b93` — AI SaaS Factory card swap.
 
 ## 🔥 Important — one production bug
 
