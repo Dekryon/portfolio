@@ -23,12 +23,12 @@ export const PROJECTS = [
     learned:
       'Designing for uncertainty · when an AI is unsure, the UX matters more than the model. A clear confirmation loop beats raw accuracy every time.',
     status: 'In Development',
-    github: null,
-    demo: null,
+    github: 'https://github.com/Dekryon/drive-thru-ai',
+    demo: 'https://ordo-portal-liart.vercel.app',
     accent: '#ff5b22',
     image: '/projects/drive-thru.jpg',
     mockType: 'dashboard',
-    label: 'ordo · operator console'
+    label: 'ordo-portal-liart.vercel.app'
   },
   {
     id: 'quality-auto',
