@@ -10,6 +10,3 @@ dist
 !.vscode/extensions.json
 
 .vercel
-
-# Local hero-video source (committed output lives at public/hero.mp4)
-scripts/hero-source.*
