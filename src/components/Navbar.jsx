@@ -146,18 +146,24 @@ export default function Navbar() {
             </div>
           </a>
 
-          {/* Liquid nav pill */}
+          {/* Liquid nav pill — uses liquid-glass + a darker bg-black underlay so
+              link text reads decisively against the WebGL hero behind it. */}
           <nav
             ref={navRef}
             onMouseLeave={() => setHovered(null)}
             className="hidden lg:flex relative items-center p-1.5 rounded-full liquid-glass"
+            style={{
+              background:
+                'linear-gradient(135deg, rgba(8, 8, 10, 0.55), rgba(8, 8, 10, 0.35))'
+            }}
           >
             {/* Liquid blob layer — applies the goey filter so blobs merge fluidly */}
             <div
               className="absolute inset-1.5 pointer-events-none rounded-full overflow-hidden"
               style={{ filter: 'url(#liquid-nav)' }}
             >
-              {/* Active blob */}
+              {/* Active blob — brighter gradient + larger ember halo so it
+                  reads strongly through the goo filter. */}
               {activeRect && (
                 <motion.div
                   animate={{ x: activeRect.x, width: activeRect.width }}
@@ -170,10 +176,10 @@ export default function Navbar() {
                   className="absolute top-0 h-full rounded-full"
                   style={{
                     background:
-                      'linear-gradient(135deg, #ff5b22 0%, #ff8a5b 35%, #93c5fd 70%, #3b82f6 100%)',
+                      'linear-gradient(135deg, #ff7438 0%, #ffa07a 35%, #c0d8ff 70%, #5fa0ff 100%)',
                     backgroundSize: '180% 100%',
                     boxShadow:
-                      '0 0 30px rgba(255,91,34,0.45), 0 0 40px rgba(59,130,246,0.35) inset'
+                      '0 0 42px rgba(255,138,91,0.65), 0 0 24px rgba(96,165,250,0.55), inset 0 0 18px rgba(255,255,255,0.25)'
                   }}
                 />
               )}
@@ -220,21 +226,26 @@ export default function Navbar() {
                   onMouseEnter={() => setHovered(l.href)}
                   onFocus={() => setHovered(l.href)}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`relative z-10 px-4 py-2 text-[15px] rounded-full transition-colors duration-300 flex items-center gap-2 select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember/80 ${
+                  className={`relative z-10 px-4 py-2 text-base rounded-full transition-colors duration-300 flex items-center gap-2 select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember/80 ${
                     isActive
                       ? 'text-bg font-semibold'
                       : hovered === l.href
                       ? 'text-bg font-medium'
                       : 'text-bone font-medium'
                   }`}
+                  style={
+                    !isActive && hovered !== l.href
+                      ? { textShadow: '0 1px 8px rgba(0,0,0,0.55)' }
+                      : undefined
+                  }
                 >
                   <span
-                    className={`font-mono text-[11px] transition-colors duration-300 ${
+                    className={`font-mono text-xs transition-colors duration-300 ${
                       isActive
                         ? 'text-bg/75'
                         : hovered === l.href
                         ? 'text-bg/75'
-                        : 'text-bone-dim'
+                        : 'text-bone-muted'
                     }`}
                   >
                     {l.n}

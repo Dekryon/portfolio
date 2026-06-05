@@ -10,3 +10,6 @@ dist
 !.vscode/extensions.json
 
 .vercel
+
+# Local verification screenshot output (re-runnable via scripts/verify-nav.mjs)
+verify-shots/
