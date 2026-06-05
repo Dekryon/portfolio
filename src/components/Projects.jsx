@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowUpRight, Github, ExternalLink } from 'lucide-react'
-import { PROJECTS, STATUS_STYLES } from '../data/projects.js'
+import { PROJECTS } from '../data/projects.js'
 import {
   BrowserMockup,
   MockDashboard,

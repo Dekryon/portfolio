@@ -142,10 +142,12 @@ export default function Hero() {
           {/* Liquid-glass pill — each new role slides in from the right */}
           <div className="hidden sm:inline-flex items-center gap-2 pl-3 pr-2 py-1.5 rounded-full liquid-glass overflow-hidden">
             <span className="text-bone-muted shrink-0">Currently</span>
+            {/* Decorative role ticker — aria-hidden so assistive tech isn't
+                re-interrupted with a new value every 2.4s. */}
             <span
               className="relative overflow-hidden h-[14px] flex items-center"
               style={{ minWidth: '11ch' }}
-              aria-live="polite"
+              aria-hidden="true"
             >
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.span
