@@ -3,7 +3,7 @@ import { EDUCATION } from '../data/education.js'
 
 export default function Education() {
   return (
-    <section id="education" className="relative container-x py-24 sm:py-32">
+    <section id="education" aria-labelledby="education-heading" className="relative container-x py-24 sm:py-32">
       <div className="flex items-center gap-4 mb-12">
         <span className="marker">07 / Education</span>
         <div className="flex-1 h-px bg-line" />
@@ -18,7 +18,7 @@ export default function Education() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-7"
         >
-          <h2 className="h-display text-[10vw] sm:text-[6vw] lg:text-[5rem] leading-[1] text-bone mb-8">
+          <h2 id="education-heading" className="h-display text-[10vw] sm:text-[6vw] lg:text-[5rem] leading-[1] text-bone mb-8">
             {EDUCATION.school}<span className="italic ember-glow">.</span>
           </h2>
 

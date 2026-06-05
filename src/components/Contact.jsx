@@ -54,13 +54,14 @@ export default function Contact() {
   }, [sent])
 
   return (
-    <section id="contact" className="relative container-x py-24 sm:py-32">
+    <section id="contact" aria-labelledby="contact-heading" className="relative container-x py-24 sm:py-32">
       <div className="flex items-center gap-4 mb-12">
         <span className="marker">09 / Contact</span>
         <div className="flex-1 h-px bg-line" />
       </div>
 
       <motion.h2
+        id="contact-heading"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}

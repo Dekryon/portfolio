@@ -3,7 +3,7 @@ import Portrait from './Portrait.jsx'
 
 export default function About() {
   return (
-    <section id="about" className="relative container-x py-24 sm:py-32">
+    <section id="about" aria-labelledby="about-heading" className="relative container-x py-24 sm:py-32">
       <div className="flex items-center gap-4 mb-16">
         <span className="marker">02 / Identity</span>
         <div className="flex-1 h-px bg-line" />
@@ -37,6 +37,7 @@ export default function About() {
         {/* Story */}
         <div className="lg:col-span-7">
           <motion.h2
+            id="about-heading"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
