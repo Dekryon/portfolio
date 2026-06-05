@@ -218,21 +218,23 @@ export default function Navbar() {
                   }}
                   onClick={(e) => onClickLink(e, l.href)}
                   onMouseEnter={() => setHovered(l.href)}
-                  className={`relative z-10 px-4 py-2 text-sm rounded-full transition-colors duration-300 flex items-center gap-2 select-none ${
+                  onFocus={() => setHovered(l.href)}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`relative z-10 px-4 py-2 text-[15px] rounded-full transition-colors duration-300 flex items-center gap-2 select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember/80 ${
                     isActive
                       ? 'text-bg font-semibold'
                       : hovered === l.href
                       ? 'text-bg font-medium'
-                      : 'text-bone-muted'
+                      : 'text-bone font-medium'
                   }`}
                 >
                   <span
-                    className={`font-mono text-[10px] transition-colors duration-300 ${
+                    className={`font-mono text-[11px] transition-colors duration-300 ${
                       isActive
-                        ? 'text-bg/70'
+                        ? 'text-bg/75'
                         : hovered === l.href
-                        ? 'text-bg/70'
-                        : 'text-bone-faint'
+                        ? 'text-bg/75'
+                        : 'text-bone-dim'
                     }`}
                   >
                     {l.n}

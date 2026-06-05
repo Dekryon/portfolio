@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import Scene from './Scene.jsx'
 
@@ -61,7 +61,7 @@ export default function Hero() {
       {/* Top utility bar · hidden on mobile, navbar handles brand */}
       <motion.div
         style={{ opacity }}
-        className="hidden sm:flex absolute top-0 left-0 right-0 z-10 items-center justify-between p-6 sm:p-10 font-mono text-[10px] uppercase tracking-[0.25em] text-bone-dim"
+        className="hidden sm:flex absolute top-0 left-0 right-0 z-10 items-center justify-between p-6 sm:p-10 font-mono text-[11px] uppercase tracking-[0.25em] text-bone-dim"
       >
         <span>Peterborough · ON · CA</span>
         <span className="hidden sm:inline">{time}</span>
@@ -125,16 +125,40 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.6, duration: 0.8 }}
-          className="font-mono text-[10px] uppercase tracking-[0.25em] text-bone-dim space-y-1.5"
+          className="font-mono text-[11px] uppercase tracking-[0.25em] text-bone-muted space-y-2"
         >
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-ember animate-pulse" />
             <span className="text-bone">Available · Internships · Freelance</span>
           </div>
-          <div className="hidden sm:flex items-center gap-2">
-            <span>Currently</span>
-            <span className="text-bone">{ROLES[roleIdx]}</span>
-            <span className="inline-block w-1.5 h-3 bg-ember animate-pulse" />
+
+          {/* Liquid-glass pill — each new role slides in from the right */}
+          <div className="hidden sm:inline-flex items-center gap-2 pl-3 pr-2 py-1.5 rounded-full liquid-glass overflow-hidden">
+            <span className="text-bone-muted shrink-0">Currently</span>
+            <span
+              className="relative overflow-hidden h-[14px] flex items-center"
+              style={{ minWidth: '11ch' }}
+              aria-live="polite"
+            >
+              <AnimatePresence mode="popLayout" initial={false}>
+                <motion.span
+                  key={ROLES[roleIdx]}
+                  initial={{ x: 22, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -22, opacity: 0 }}
+                  transition={{
+                    type: 'spring',
+                    stiffness: 480,
+                    damping: 32,
+                    mass: 0.6
+                  }}
+                  className="text-bone whitespace-nowrap"
+                >
+                  {ROLES[roleIdx]}
+                </motion.span>
+              </AnimatePresence>
+            </span>
+            <span className="inline-block w-1.5 h-3 bg-ember animate-pulse shrink-0" />
           </div>
         </motion.div>
 
@@ -144,7 +168,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.7, duration: 0.8 }}
-          className="group flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.25em] text-bone-dim hover:text-bone transition"
+          className="group flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.25em] text-bone-muted hover:text-bone transition"
         >
           <span>Scroll</span>
           <ArrowDown size={14} className="group-hover:translate-y-0.5 transition-transform" />
