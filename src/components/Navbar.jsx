@@ -146,15 +146,16 @@ export default function Navbar() {
             </div>
           </a>
 
-          {/* Liquid nav pill — uses liquid-glass + a darker bg-black underlay so
-              link text reads decisively against the WebGL hero behind it. */}
+          {/* Liquid nav pill — liquid-glass + a moderate bg-black underlay.
+              Strong enough that text reads decisively, light enough that the
+              active blob's gradient still pops through. */}
           <nav
             ref={navRef}
             onMouseLeave={() => setHovered(null)}
             className="hidden lg:flex relative items-center p-1.5 rounded-full liquid-glass"
             style={{
               background:
-                'linear-gradient(135deg, rgba(8, 8, 10, 0.55), rgba(8, 8, 10, 0.35))'
+                'linear-gradient(135deg, rgba(8, 8, 10, 0.38), rgba(8, 8, 10, 0.20))'
             }}
           >
             {/* Liquid blob layer — applies the goey filter so blobs merge fluidly */}
@@ -162,8 +163,10 @@ export default function Navbar() {
               className="absolute inset-1.5 pointer-events-none rounded-full overflow-hidden"
               style={{ filter: 'url(#liquid-nav)' }}
             >
-              {/* Active blob — brighter gradient + larger ember halo so it
-                  reads strongly through the goo filter. */}
+              {/* Active blob — saturated ember→tide gradient with a layered
+                  halo. mix-blend-screen guarantees the pill lightens whatever
+                  is behind it (the dark backdrop layer) instead of being
+                  averaged into it. */}
               {activeRect && (
                 <motion.div
                   animate={{ x: activeRect.x, width: activeRect.width }}
@@ -176,10 +179,11 @@ export default function Navbar() {
                   className="absolute top-0 h-full rounded-full"
                   style={{
                     background:
-                      'linear-gradient(135deg, #ff7438 0%, #ffa07a 35%, #c0d8ff 70%, #5fa0ff 100%)',
+                      'linear-gradient(135deg, #ff8a4f 0%, #ffb088 35%, #d0e4ff 70%, #7eb6ff 100%)',
                     backgroundSize: '180% 100%',
                     boxShadow:
-                      '0 0 42px rgba(255,138,91,0.65), 0 0 24px rgba(96,165,250,0.55), inset 0 0 18px rgba(255,255,255,0.25)'
+                      '0 0 48px rgba(255,138,91,0.75), 0 0 28px rgba(96,165,250,0.6), inset 0 0 20px rgba(255,255,255,0.35)',
+                    mixBlendMode: 'screen'
                   }}
                 />
               )}
