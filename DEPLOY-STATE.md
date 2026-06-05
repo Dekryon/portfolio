@@ -1,6 +1,6 @@
 # Deploy State · pick up here
 
-_Last audited: 2026-06-04_
+_Last audited: 2026-06-05_
 
 ## ✅ Live
 
@@ -8,11 +8,30 @@ _Last audited: 2026-06-04_
 - **Repo:** https://github.com/Dekryon/portfolio (public)
 - **Vercel project:** `portfolio` in team `qualityauto-signatures`
 - **CI/CD:** push to `main` auto-deploys to prod; PRs get preview URLs.
-- **Build:** clean — 362 KB gzipped JS.
+- **Build:** clean — 342 KB gzipped main JS + Scene split into 22 KB gzip
+  lazy chunk (via React.lazy on Hero.jsx). Project-grid `<img>`s have
+  `loading="lazy"` so ~600 KB of JPEGs below the fold don't block first
+  paint.
 - **Hero is the original WebGL scene** (`Scene.jsx` — wireframe sphere,
-  ember orbit, sparkles, bloom + chromatic aberration). A muted-autoplay
-  video was tried briefly (commit `fb10ad3`) and reverted (commit
-  `32f4123`) at user request.
+  ember orbit, sparkles, bloom + chromatic aberration), lazy-loaded.
+  A muted-autoplay video was tried briefly (commit `fb10ad3`) and
+  reverted (commit `32f4123`) at user request.
+- **Nav redesign** (commits `fa44376` → `0440d97` → `fba5b64`): clean
+  ALL-CAPS Geist Mono labels (Ordo-style), dark glass pill with hairline
+  border, vivid ember solid pill that slides between hovered/active
+  links. Root cause of all the prior "active blob looks dark" symptoms
+  was `.liquid-glass > *` overriding Tailwind's `.absolute` utility on
+  the blob container; now fixed AND the CSS rule is wrapped in
+  `:where()` + `:not([data-glass-raw])` so future absolute children
+  don't hit the same trap.
+- **Accessibility** (commits `f11d50c`, `0adfefe`): retired `bone-faint`
+  color (failed WCAG AA at 2.4:1); contact form fields have
+  htmlFor/id binding, required asterisks, aria-required, aria-live
+  status region; skip-to-content link as first tab stop; Loader has
+  role="progressbar" with live aria-valuenow; every `<section>` has
+  aria-labelledby pointing at its `<h2>`.
+- **SEO** (commit `e9aad19`): Person JSON-LD schema; meta description
+  trimmed to 156 chars (under Google's snippet cutoff).
 - **Real screenshots in place** (4 of 8 cards): `quality-auto.jpg`,
   `portfolio.jpg`, `drive-thru.jpg` (Ordo operator portal),
   `ai-saas-factory.jpg`. The other 4 cards render the hand-coded CSS
@@ -27,8 +46,7 @@ _Last audited: 2026-06-04_
   (256x256 photographed tile texture) drives the body-wide film-grain
   overlay and the Portrait frame's noise blend.
 - **Capture script** (`npm run screenshots`) covers 4 live URLs.
-- **Latest commit:** `bcbb841` — re-shot portfolio.jpg with the WebGL
-  hero restored in the projects-grid card.
+- **Latest commit:** `0adfefe` — section aria-labelledby pass.
 
 ## 🔥 Important — one production bug
 
