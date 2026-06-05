@@ -25,6 +25,8 @@ export function BrowserMockup({ src, alt, label = 'localhost:3000', children, cl
           <img
             src={src}
             alt={alt}
+            loading="lazy"
+            decoding="async"
             onError={() => setErrored(true)}
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -47,6 +49,8 @@ export function PhoneMockup({ src, alt, children, className = '' }) {
           <img
             src={src}
             alt={alt}
+            loading="lazy"
+            decoding="async"
             onError={() => setErrored(true)}
             className="absolute inset-0 w-full h-full object-cover"
           />
