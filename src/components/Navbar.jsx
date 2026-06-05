@@ -90,32 +90,6 @@ export default function Navbar() {
 
   return (
     <>
-      {/* SVG filter that powers the goey liquid merging effect.
-          Mounted once, referenced via url(#liquid-nav). */}
-      <svg
-        className="absolute"
-        style={{ width: 0, height: 0, position: 'absolute' }}
-        aria-hidden="true"
-      >
-        <defs>
-          <filter id="liquid-nav" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
-            <feColorMatrix
-              in="blur"
-              type="matrix"
-              values="
-                1 0 0 0 0
-                0 1 0 0 0
-                0 0 1 0 0
-                0 0 0 22 -10
-              "
-              result="goo"
-            />
-            <feComposite in="SourceGraphic" in2="goo" operator="atop" />
-          </filter>
-        </defs>
-      </svg>
-
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -158,21 +132,22 @@ export default function Navbar() {
               border: '1px solid rgba(245, 241, 232, 0.18)'
             }}
           >
-            {/* Liquid blob layer — applies the goey filter so blobs merge fluidly */}
+            {/* Pill layer — clean ember pill that slides between active and
+                hovered sections. No goo filter — keeps the gradient vivid. */}
             <div
               className="absolute inset-1.5 pointer-events-none rounded-full overflow-hidden"
-              style={{ filter: 'url(#liquid-nav)' }}
             >
-              {/* Active blob — vivid solid ember pill with a strong halo,
-                  Ordo-style. Slides between sections via framer spring. */}
-              {activeRect && (
+              {(hoverRect || activeRect) && (
                 <motion.div
-                  animate={{ x: activeRect.x, width: activeRect.width }}
+                  animate={{
+                    x: (hoverRect || activeRect).x,
+                    width: (hoverRect || activeRect).width
+                  }}
                   transition={{
                     type: 'spring',
-                    stiffness: 420,
-                    damping: 32,
-                    mass: 0.75
+                    stiffness: 460,
+                    damping: 34,
+                    mass: 0.7
                   }}
                   className="absolute top-0 h-full rounded-full"
                   style={{
@@ -183,33 +158,6 @@ export default function Navbar() {
                   }}
                 />
               )}
-              {/* Hover blob — appears next to active, the goey filter merges them */}
-              <AnimatePresence>
-                {hoverRect && (
-                  <motion.div
-                    key="hover"
-                    initial={{ opacity: 0, scale: 0.7, x: hoverRect.x, width: hoverRect.width }}
-                    animate={{
-                      opacity: 0.85,
-                      scale: 1,
-                      x: hoverRect.x,
-                      width: hoverRect.width
-                    }}
-                    exit={{ opacity: 0, scale: 0.7 }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 480,
-                      damping: 30,
-                      mass: 0.6
-                    }}
-                    className="absolute top-0 h-full rounded-full"
-                    style={{
-                      background:
-                        'linear-gradient(135deg, rgba(245,241,232,0.95), rgba(245,241,232,0.6))'
-                    }}
-                  />
-                )}
-              </AnimatePresence>
             </div>
 
             {/* Clickable links sit on top of the blob layer */}

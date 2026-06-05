@@ -45,8 +45,14 @@ await page.screenshot({
 })
 console.log('  ✓ nav-idle.jpg')
 
-// Shot 2: hover over "Identity" link (the second link in the pill)
-const identity = page.locator('a:has-text("Identity")').first()
+// Shot 2: hover over "IDENTITY" link (the second link in the pill).
+// Matches case-insensitively since the redesign uses CSS `text-transform`
+// + raw "Identity" in the DOM, but a previous round shipped UPPERCASE
+// literals — accept either.
+const identity = page
+  .locator('a')
+  .filter({ hasText: /identity/i })
+  .first()
 if (await identity.count()) {
   await identity.hover()
   await page.waitForTimeout(800) // let the spring settle
