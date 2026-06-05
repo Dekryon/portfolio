@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ArrowUpRight } from 'lucide-react'
 
 const LINKS = [
-  { href: '#manifesto', label: 'Manifesto', n: '01' },
-  { href: '#about', label: 'Identity', n: '02' },
-  { href: '#projects', label: 'Work', n: '03' },
-  { href: '#skills', label: 'Stack', n: '05' },
-  { href: '#experience', label: 'Experience', n: '06' },
-  { href: '#contact', label: 'Contact', n: '09' }
+  { href: '#manifesto', label: 'Manifesto' },
+  { href: '#about', label: 'Identity' },
+  { href: '#projects', label: 'Work' },
+  { href: '#skills', label: 'Stack' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#contact', label: 'Contact' }
 ]
 
 export default function Navbar() {
@@ -146,16 +146,16 @@ export default function Navbar() {
             </div>
           </a>
 
-          {/* Liquid nav pill — liquid-glass + a moderate bg-black underlay.
-              Strong enough that text reads decisively, light enough that the
-              active blob's gradient still pops through. */}
+          {/* Liquid nav pill — clean glass with a solid dark fill underneath
+              so the all-caps mono labels read crisply against any backdrop. */}
           <nav
             ref={navRef}
             onMouseLeave={() => setHovered(null)}
             className="hidden lg:flex relative items-center p-1.5 rounded-full liquid-glass"
             style={{
               background:
-                'linear-gradient(135deg, rgba(8, 8, 10, 0.38), rgba(8, 8, 10, 0.20))'
+                'linear-gradient(135deg, rgba(15, 15, 22, 0.7), rgba(15, 15, 22, 0.55))',
+              border: '1px solid rgba(245, 241, 232, 0.18)'
             }}
           >
             {/* Liquid blob layer — applies the goey filter so blobs merge fluidly */}
@@ -163,10 +163,8 @@ export default function Navbar() {
               className="absolute inset-1.5 pointer-events-none rounded-full overflow-hidden"
               style={{ filter: 'url(#liquid-nav)' }}
             >
-              {/* Active blob — saturated ember→tide gradient with a layered
-                  halo. mix-blend-screen guarantees the pill lightens whatever
-                  is behind it (the dark backdrop layer) instead of being
-                  averaged into it. */}
+              {/* Active blob — vivid solid ember pill with a strong halo,
+                  Ordo-style. Slides between sections via framer spring. */}
               {activeRect && (
                 <motion.div
                   animate={{ x: activeRect.x, width: activeRect.width }}
@@ -179,11 +177,9 @@ export default function Navbar() {
                   className="absolute top-0 h-full rounded-full"
                   style={{
                     background:
-                      'linear-gradient(135deg, #ff8a4f 0%, #ffb088 35%, #d0e4ff 70%, #7eb6ff 100%)',
-                    backgroundSize: '180% 100%',
+                      'linear-gradient(135deg, #ff5b22 0%, #ff8a5b 100%)',
                     boxShadow:
-                      '0 0 48px rgba(255,138,91,0.75), 0 0 28px rgba(96,165,250,0.6), inset 0 0 20px rgba(255,255,255,0.35)',
-                    mixBlendMode: 'screen'
+                      '0 0 36px rgba(255,91,34,0.7), 0 6px 20px rgba(255,91,34,0.45), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -1px 0 rgba(0,0,0,0.2)'
                   }}
                 />
               )}
@@ -230,7 +226,7 @@ export default function Navbar() {
                   onMouseEnter={() => setHovered(l.href)}
                   onFocus={() => setHovered(l.href)}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`relative z-10 px-4 py-2 text-base rounded-full transition-colors duration-300 flex items-center gap-2 select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember/80 ${
+                  className={`relative z-10 px-5 py-2.5 font-mono text-[12px] uppercase tracking-[0.18em] rounded-full transition-colors duration-300 select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember/80 ${
                     isActive
                       ? 'text-bg font-semibold'
                       : hovered === l.href
@@ -239,22 +235,11 @@ export default function Navbar() {
                   }`}
                   style={
                     !isActive && hovered !== l.href
-                      ? { textShadow: '0 1px 8px rgba(0,0,0,0.55)' }
+                      ? { textShadow: '0 1px 6px rgba(0,0,0,0.7)' }
                       : undefined
                   }
                 >
-                  <span
-                    className={`font-mono text-xs transition-colors duration-300 ${
-                      isActive
-                        ? 'text-bg/75'
-                        : hovered === l.href
-                        ? 'text-bg/75'
-                        : 'text-bone-muted'
-                    }`}
-                  >
-                    {l.n}
-                  </span>
-                  <span className="tracking-tight">{l.label}</span>
+                  {l.label}
                 </a>
               )
             })}
