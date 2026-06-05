@@ -280,7 +280,14 @@ main:focus-visible {
   animation: shimmerSweep 8s linear infinite;
   z-index: 0;
 }
-.liquid-glass > * { position: relative; z-index: 1; }
+/* Children of a liquid-glass container sit above the ::before shimmer
+   by default. Skip elements that opt out with `data-glass-raw` or that
+   already declare an inline `position` (that's the bug that took six
+   rounds of nav tuning to surface — `:where()` keeps specificity at 0). */
+:where(.liquid-glass) > *:not([data-glass-raw]) {
+  position: relative;
+  z-index: 1;
+}
 
 .liquid-glass-strong {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);

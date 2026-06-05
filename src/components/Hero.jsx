@@ -1,7 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
-import Scene from './Scene.jsx'
+
+// Lazy-load Scene.jsx so Three.js + R3F + postprocessing (~80 KB gzip)
+// stream in after the foreground typography is parsed. Hero <section> is
+// the same size, so the layout doesn't shift — visitors just see the
+// vignette gradient over the page bg until the WebGL canvas hydrates.
+const Scene = lazy(() => import('./Scene.jsx'))
 
 const ROLES = ['Software Engineer', 'Frontend Developer', 'AI Builder', 'Problem Solver']
 
@@ -49,9 +54,11 @@ export default function Hero() {
       id="top"
       className="relative h-[100svh] min-h-[700px] w-full overflow-hidden"
     >
-      {/* 3D scene */}
+      {/* 3D scene — streams in after first paint via React.lazy */}
       <div className="absolute inset-0 z-0">
-        <Scene scrollRef={scrollRef} />
+        <Suspense fallback={null}>
+          <Scene scrollRef={scrollRef} />
+        </Suspense>
       </div>
 
       {/* Vignette */}
