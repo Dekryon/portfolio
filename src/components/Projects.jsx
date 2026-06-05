@@ -131,7 +131,7 @@ function ProjectScene({ project, index }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative container-x">
+    <section id="projects" aria-labelledby="projects-heading" className="relative container-x">
       <div className="flex items-center gap-4 mb-12 pt-24">
         <span className="marker">03 / Selected work</span>
         <div className="flex-1 h-px bg-line" />
@@ -139,6 +139,7 @@ export default function Projects() {
       </div>
 
       <motion.h2
+        id="projects-heading"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}

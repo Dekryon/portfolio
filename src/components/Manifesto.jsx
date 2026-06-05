@@ -30,13 +30,14 @@ export default function Manifesto() {
   }, [])
 
   return (
-    <section id="manifesto" className="relative container-x py-32 sm:py-40">
+    <section id="manifesto" aria-labelledby="manifesto-heading" className="relative container-x py-32 sm:py-40">
       <div className="flex items-center gap-4 mb-12">
         <span className="marker">01 / Manifesto</span>
         <div className="flex-1 h-px bg-line" />
       </div>
 
       <h2
+        id="manifesto-heading"
         ref={containerRef}
         className="h-display text-[8vw] sm:text-[6vw] lg:text-[5.5rem] leading-[1.05] text-bone-dim max-w-6xl"
       >
