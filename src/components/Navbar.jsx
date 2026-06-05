@@ -133,9 +133,19 @@ export default function Navbar() {
             }}
           >
             {/* Pill layer — clean ember pill that slides between active and
-                hovered sections. No goo filter — keeps the gradient vivid. */}
+                hovered sections. No goo filter — keeps the gradient vivid.
+                Inline `position: absolute` beats the `.liquid-glass > *`
+                rule (which forces children to `position: relative`). */}
             <div
-              className="absolute inset-1.5 pointer-events-none rounded-full overflow-hidden"
+              className="pointer-events-none rounded-full overflow-hidden"
+              style={{
+                position: 'absolute',
+                top: '6px',
+                left: '6px',
+                right: '6px',
+                bottom: '6px',
+                zIndex: 0
+              }}
             >
               {(hoverRect || activeRect) && (
                 <motion.div
