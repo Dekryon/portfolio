@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Mail, Github, Linkedin, Check, Send } from 'lucide-react'
 
@@ -41,6 +41,17 @@ export default function Contact() {
       setSending(false)
     }
   }
+
+  // After "Sent · talk soon" stays visible for 3s, reset so a user typing
+  // a second message doesn't hit a disabled form with no explanation.
+  useEffect(() => {
+    if (!sent) return
+    const id = setTimeout(() => {
+      setSent(false)
+      setForm({ name: '', email: '', message: '' })
+    }, 3000)
+    return () => clearTimeout(id)
+  }, [sent])
 
   return (
     <section id="contact" className="relative container-x py-24 sm:py-32">
@@ -101,6 +112,7 @@ export default function Contact() {
           <button
             type="submit"
             disabled={sent || sending}
+            aria-disabled={sent || sending}
             className={`btn-ember group ${sent || sending ? 'opacity-70 cursor-default' : ''}`}
           >
             {sent ? (
@@ -117,11 +129,17 @@ export default function Contact() {
             )}
           </button>
 
-          {error && (
-            <p className="font-mono text-[11px] text-ember">{error}</p>
-          )}
+          {/* Status + error live region — screen readers announce sent/error. */}
+          <div role="status" aria-live="polite" aria-atomic="true" className="min-h-[1.25rem]">
+            {sent && (
+              <p className="sr-only">Message sent. I'll reply soon.</p>
+            )}
+            {error && (
+              <p className="font-mono text-[11px] text-ember">{error}</p>
+            )}
+          </div>
 
-          <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-bone-faint">
+          <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-bone-dim">
             // goes straight to my inbox · I read everything
           </p>
         </motion.form>
@@ -176,18 +194,30 @@ export default function Contact() {
   )
 }
 
-function Field({ label, as = 'input', ...props }) {
+function Field({ label, as = 'input', name, required, ...props }) {
+  const id = `field-${name}`
   return (
     <div className="border-b border-line-strong focus-within:border-ember transition-colors">
-      <label className="block marker mb-3 pt-1">{label}</label>
+      <label htmlFor={id} className="block marker mb-3 pt-1">
+        {label}
+        {required && <span className="text-ember ml-1" aria-hidden="true">*</span>}
+      </label>
       {as === 'textarea' ? (
         <textarea
-          className="w-full bg-transparent border-0 outline-none text-bone text-lg placeholder:text-bone-faint resize-none pb-3"
+          id={id}
+          name={name}
+          required={required}
+          aria-required={required || undefined}
+          className="w-full bg-transparent border-0 outline-none text-bone text-lg placeholder:text-bone-dim resize-none pb-3"
           {...props}
         />
       ) : (
         <input
-          className="w-full bg-transparent border-0 outline-none text-bone text-lg placeholder:text-bone-faint pb-3"
+          id={id}
+          name={name}
+          required={required}
+          aria-required={required || undefined}
+          className="w-full bg-transparent border-0 outline-none text-bone text-lg placeholder:text-bone-dim pb-3"
           {...props}
         />
       )}

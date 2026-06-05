@@ -39,6 +39,47 @@ body {
   color: var(--bg);
 }
 
+/* Skip-to-content — visible only when focused via keyboard tab. */
+.skip-to-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  transform: translateY(-110%);
+  padding: 12px 18px;
+  background: var(--ember);
+  color: var(--bg);
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom-right-radius: 6px;
+  transition: transform 200ms ease;
+}
+.skip-to-content:focus-visible {
+  transform: translateY(0);
+  outline: none;
+}
+
+main:focus-visible {
+  outline: none;
+}
+
+/* Visually-hidden helper for screen-reader-only labels (sr-only is Tailwind
+   built-in but we name it explicitly here for the contact form's status). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Grain overlay — real photographed tile texture (public/grain.jpg) */
 .grain::before {
   content: '';

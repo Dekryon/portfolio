@@ -20,7 +20,7 @@ export default function Footer() {
           <a href="#manifesto">Manifesto</a>
           <a href="#about">Identity</a>
           <a href="#projects">Work</a>
-          <a href="#skills">Toolset</a>
+          <a href="#skills">Stack</a>
         </FooterCol>
         <FooterCol title="Direct">
           <a href="mailto:ukugregory@gmail.com">ukugregory@gmail.com</a>
@@ -48,7 +48,7 @@ export default function Footer() {
         </FooterCol>
       </div>
 
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-line font-mono text-[10px] uppercase tracking-[0.25em] text-bone-faint">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-line font-mono text-[11px] uppercase tracking-[0.25em] text-bone-dim">
         <span>© {year} Gregory Uku · All rights reserved.</span>
         <div className="flex items-center gap-3">
           <a

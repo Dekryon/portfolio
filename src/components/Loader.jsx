@@ -24,6 +24,11 @@ export default function Loader() {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }}
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={progress}
+          aria-label="Loading portfolio"
           className="fixed inset-0 z-[200] bg-bg flex items-end justify-between p-6 sm:p-10"
         >
           <div className="flex flex-col gap-3">
@@ -36,7 +41,10 @@ export default function Loader() {
           </div>
 
           <div className="flex flex-col items-end gap-3">
-            <div className="numeral text-5xl sm:text-7xl text-bone leading-none">
+            <div
+              className="numeral text-5xl sm:text-7xl text-bone leading-none"
+              aria-hidden="true"
+            >
               {String(progress).padStart(3, '0')}
             </div>
             <div className="w-40 sm:w-64 h-px bg-line-strong overflow-hidden">

@@ -79,7 +79,7 @@ export default function Education() {
                 <span className="text-bone group-hover:translate-x-1 transition-transform">
                   {c.name}
                 </span>
-                <span className="ml-auto font-mono text-[10px] text-bone-faint opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="ml-auto font-mono text-[10px] text-bone-dim opacity-0 group-hover:opacity-100 transition-opacity">
                   →
                 </span>
               </motion.div>

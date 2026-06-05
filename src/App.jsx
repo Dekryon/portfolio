@@ -24,9 +24,12 @@ export default function App() {
 
   return (
     <SmoothScroll>
+      <a href="#main-content" className="skip-to-content">
+        Skip to content
+      </a>
       <Loader />
       <Navbar />
-      <main className="relative">
+      <main id="main-content" className="relative" tabIndex={-1}>
         <Hero />
         <Manifesto />
         <About />
