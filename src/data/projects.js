@@ -248,12 +248,3 @@ export const PROJECTS = [
     label: 'study.gregoryuku.com'
   }
 ]
-
-export const PROJECT_CATEGORIES = ['All', 'AI', 'Web', 'Software']
-
-export const STATUS_STYLES = {
-  Completed: 'border-emerald-500/40 bg-emerald-500/10 text-emerald-400',
-  'In Development': 'border-ember/40 bg-ember/10 text-ember',
-  Prototype: 'border-cyan-500/40 bg-cyan-500/10 text-cyan-400',
-  Concept: 'border-violet-500/40 bg-violet-500/10 text-violet-400'
-}

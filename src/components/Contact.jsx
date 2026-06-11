@@ -13,13 +13,15 @@ export default function Contact() {
   const onChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
 
-  // Fallback: hand off to the visitor's mail client so the message still
-  // reaches the inbox if the serverless email backend is down/unconfigured.
-  const mailtoHandoff = () => {
+  // Build a mailto: URL pre-filled with the form contents. Used as a
+  // visible fallback link when the serverless backend is down or
+  // unconfigured — we no longer fire window.location and lie about it,
+  // because there's no way to verify the OS actually opened a mail client.
+  const mailtoUrl = (() => {
     const subject = encodeURIComponent(`Portfolio inquiry — ${form.name || 'someone'}`)
     const body = encodeURIComponent(`${form.message}\n\n— ${form.name} · ${form.email}`)
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`
-  }
+    return `mailto:${EMAIL}?subject=${subject}&body=${body}`
+  })()
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -34,9 +36,9 @@ export default function Contact() {
       if (!res.ok) throw new Error('Request failed')
       setSent(true)
     } catch {
-      // Server send failed — fall back to the mail client rather than losing it.
-      mailtoHandoff()
-      setSent(true)
+      setError(
+        `Sending hit a snag. Open the pre-filled email below, or copy ${EMAIL} — I read everything.`
+      )
     } finally {
       setSending(false)
     }
@@ -136,7 +138,17 @@ export default function Contact() {
               <p className="sr-only">Message sent. I'll reply soon.</p>
             )}
             {error && (
-              <p className="font-mono text-[11px] text-ember">{error}</p>
+              <div className="space-y-2" role="alert">
+                <p className="font-mono text-[11px] text-ember leading-relaxed">
+                  {error}
+                </p>
+                <a
+                  href={mailtoUrl}
+                  className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-bone hover:text-ember underline underline-offset-4 transition-colors"
+                >
+                  <Mail size={12} /> Open pre-filled email
+                </a>
+              </div>
             )}
           </div>
 

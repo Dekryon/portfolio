@@ -1,7 +1,48 @@
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { SKILL_GROUPS } from '../data/skills.js'
-import LanguageScene from './LanguageScene.jsx'
 import CodePlayer from './CodePlayer.jsx'
+
+// LanguageScene pulls in @react-three/fiber + drei. If it's imported
+// eagerly, all of Three.js lands in the main bundle — the audit caught
+// this defeating the Hero's own lazy-load. Split it into its own chunk
+// and gate the Canvas mount on visibility so the GL context never spins
+// up for visitors who don't scroll this far.
+const LanguageScene = lazy(() => import('./LanguageScene.jsx'))
+
+function VisibleLanguageScene() {
+  const ref = useRef(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    if (visible || !ref.current) return
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisible(true)
+          obs.disconnect()
+        }
+      },
+      { rootMargin: '400px 0px' }
+    )
+    obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [visible])
+
+  return (
+    <div ref={ref} className="min-h-[640px] sm:min-h-[680px]">
+      {visible && (
+        <Suspense
+          fallback={
+            <div className="h-[640px] sm:h-[680px] rounded-3xl liquid-glass" />
+          }
+        >
+          <LanguageScene />
+        </Suspense>
+      )}
+    </div>
+  )
+}
 
 const LEVEL_DOTS = { Strong: 3, Comfortable: 2, Learning: 1 }
 const LEVEL_COLOR = {
@@ -50,7 +91,7 @@ export default function Skills() {
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         className="mb-16"
       >
-        <LanguageScene />
+        <VisibleLanguageScene />
       </motion.div>
 
       {/* Smooth code slideshow */}
