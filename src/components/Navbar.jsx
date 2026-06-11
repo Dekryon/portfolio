@@ -273,13 +273,16 @@ export default function Navbar() {
                     transition={{ delay: 0.1 + i * 0.06, duration: 0.5 }}
                     className="group flex items-baseline gap-6 py-5 border-b border-line"
                   >
-                    <span className="numeral text-4xl text-ember">{l.n}</span>
+                    <span className="numeral text-4xl text-ember" aria-hidden="true">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
                     <span className="font-serif text-5xl text-bone group-hover:italic transition-all">
                       {l.label}
                     </span>
                     <ArrowUpRight
                       size={24}
                       className="ml-auto text-bone-muted group-hover:text-ember transition-colors"
+                      aria-hidden="true"
                     />
                   </motion.a>
                 ))}

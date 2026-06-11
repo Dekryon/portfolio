@@ -6,8 +6,8 @@ export function BrowserMockup({ src, alt, label = 'localhost:3000', children, cl
 
   return (
     <div className={`relative rounded-xl overflow-hidden border border-line-strong bg-bg-soft shadow-cinema ${className}`}>
-      {/* Window chrome */}
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-line bg-gradient-to-b from-bg-card to-bg-surface">
+      {/* Window chrome — decorative shell around the project shot, no semantic value */}
+      <div className="flex items-center gap-2 px-4 py-3 border-b border-line bg-gradient-to-b from-bg-card to-bg-surface" aria-hidden="true">
         <div className="flex gap-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-bone/15" />
           <span className="w-2.5 h-2.5 rounded-full bg-bone/15" />

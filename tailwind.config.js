@@ -14,8 +14,7 @@ export default {
         bone: {
           DEFAULT: '#f5f1e8',
           muted: '#c4bfb3',
-          dim: '#85807a',
-          faint: '#56544e'
+          dim: '#85807a'
         },
         ember: {
           DEFAULT: '#ff5b22',
