@@ -22,6 +22,9 @@ export default {
           dim: '#cc4416',
           glow: '#ffa07a'
         },
+        /* tide is reserved for atmospheric / semantic use only —
+           aurora gradients, code syntax tokens, the language-orb scene.
+           Never used as a button fill, chip background, or text emphasis. */
         tide: {
           DEFAULT: '#3b82f6',
           soft: '#60a5fa',
@@ -46,9 +49,7 @@ export default {
         'rise': 'rise 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'orb-drift': 'orbDrift 18s ease-in-out infinite',
         'marquee': 'marquee 40s linear infinite',
-        'shimmer-text': 'shimmerText 4s ease-in-out infinite',
-        'shimmer-sweep': 'shimmerSweep 6s linear infinite',
-        'liquid-shift': 'liquidShift 8s ease-in-out infinite'
+        'shimmer-sweep': 'shimmerSweep 6s linear infinite'
       },
       keyframes: {
         fadeIn: { from: { opacity: 0 }, to: { opacity: 1 } },
@@ -68,32 +69,23 @@ export default {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(-50%)' }
         },
-        shimmerText: {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' }
-        },
         shimmerSweep: {
           '0%': { transform: 'translateX(-200%)' },
           '100%': { transform: 'translateX(200%)' }
-        },
-        liquidShift: {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' }
         }
       },
       backgroundImage: {
-        'noise': "url('/grain.jpg')",
-        'blend-flame': 'linear-gradient(135deg, #ff5b22 0%, #ff8a5b 35%, #60a5fa 75%, #3b82f6 100%)',
-        'blend-tide': 'linear-gradient(135deg, #3b82f6 0%, #60a5fa 35%, #ff8a5b 75%, #ff5b22 100%)'
+        'noise': "url('/grain.jpg')"
       },
       backgroundSize: {
         'grain': '200px 200px'
       },
       boxShadow: {
-        ember: '0 0 0 1px rgba(255, 91, 34, 0.35), 0 12px 40px -8px rgba(255, 91, 34, 0.4)',
-        tide: '0 0 0 1px rgba(59, 130, 246, 0.35), 0 12px 40px -8px rgba(59, 130, 246, 0.45)',
-        bone: '0 0 0 1px rgba(245, 241, 232, 0.1), 0 8px 32px -4px rgba(0,0,0,0.8)',
+        /* Refero-style single-shadow rule: cinema for product mockups,
+           ring-bone for hairline card outlines, glass-inset for the
+           liquid-glass system. No glow shadows on chrome. */
         cinema: '0 24px 80px -20px rgba(0,0,0,0.9), 0 0 0 1px rgba(245, 241, 232, 0.06)',
+        'ring-bone': '0 0 0 1px rgba(245, 241, 232, 0.16)',
         'glass-inset':
           'inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.4)'
       },

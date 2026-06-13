@@ -146,7 +146,7 @@ export default function Projects() {
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         className="h-display text-[12vw] sm:text-[8vw] lg:text-[8rem] leading-[0.95] text-bone max-w-6xl mb-6"
       >
-        Things I've <span className="italic blend-glow">built</span>.
+        Things I've <span className="italic">built</span>.
       </motion.h2>
 
       <motion.p

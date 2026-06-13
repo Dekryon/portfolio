@@ -102,10 +102,10 @@ export default function Navbar() {
           {/* Brand */}
           <a href="#top" className="group flex items-center gap-3 shrink-0">
             <div
-              className="relative w-10 h-10 rounded-full overflow-hidden flex items-center justify-center font-mono text-xs font-semibold text-bg shadow-ember"
+              className="relative w-10 h-10 rounded-full overflow-hidden flex items-center justify-center font-mono text-xs font-semibold text-bg"
               style={{
                 background:
-                  'linear-gradient(135deg, #ff5b22 0%, #ff8a5b 40%, #60a5fa 100%)'
+                  'linear-gradient(135deg, #ff5b22 0%, #ff8a5b 100%)'
               }}
             >
               <span className="relative z-10">GU</span>
@@ -208,7 +208,7 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={(e) => onClickLink(e, '#contact')}
-              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-bg font-mono text-xs uppercase tracking-[0.15em] font-semibold hover:-translate-y-0.5 transition-all shadow-ember"
+              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-bg font-mono text-xs uppercase tracking-[0.15em] font-semibold hover:-translate-y-0.5 transition-all"
               style={{
                 background: 'linear-gradient(135deg, #ff5b22 0%, #ff8a5b 100%)'
               }}

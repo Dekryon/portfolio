@@ -44,8 +44,8 @@ export default function About() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="h-display text-[10vw] sm:text-[7vw] lg:text-[5rem] leading-[1] text-bone mb-12"
           >
-            Builder<span className="italic blend-glow">,</span><br />
-            in <span className="italic tide-glow">training</span>.
+            Builder<span className="italic">,</span><br />
+            in <span className="italic">training</span>.
           </motion.h2>
 
           <motion.div

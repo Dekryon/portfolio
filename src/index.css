@@ -54,7 +54,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  border-bottom-right-radius: 6px;
+  border-bottom-right-radius: 2px;
   transition: transform 200ms ease;
 }
 .skip-to-content:focus-visible {
@@ -66,8 +66,7 @@ main:focus-visible {
   outline: none;
 }
 
-/* Visually-hidden helper for screen-reader-only labels (sr-only is Tailwind
-   built-in but we name it explicitly here for the contact form's status). */
+/* Visually-hidden helper for screen-reader-only labels */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -80,7 +79,7 @@ main:focus-visible {
   border: 0;
 }
 
-/* Grain overlay — real photographed tile texture (public/grain.jpg) */
+/* Grain overlay */
 .grain::before {
   content: '';
   position: fixed;
@@ -94,14 +93,14 @@ main:focus-visible {
   background-repeat: repeat;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar — solid ember (single-accent rationing). */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(255, 91, 34, 0.6), rgba(59, 130, 246, 0.6));
+  background: rgba(255, 91, 34, 0.5);
   border-radius: 0;
 }
-::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--ember), var(--tide)); }
+::-webkit-scrollbar-thumb:hover { background: var(--ember); }
 
 @layer components {
   .container-x {
@@ -114,23 +113,11 @@ main:focus-visible {
   .chip-ember {
     @apply chip border-ember/40 bg-ember/10 text-ember;
   }
-  .chip-tide {
-    @apply chip border-tide/40 bg-tide/10 text-tide-soft;
-  }
   .btn {
     @apply inline-flex items-center gap-3 px-6 py-3.5 font-mono text-xs uppercase tracking-[0.15em] transition-all duration-300 rounded-full;
   }
   .btn-ember {
-    @apply btn bg-ember text-bg hover:bg-ember-soft hover:-translate-y-0.5 shadow-ember;
-  }
-  .btn-tide {
-    @apply btn bg-tide text-bg hover:bg-tide-soft hover:-translate-y-0.5 shadow-tide;
-  }
-  .btn-blend {
-    @apply btn text-bg hover:-translate-y-0.5 shadow-ember;
-    background: linear-gradient(135deg, var(--ember) 0%, var(--ember-soft) 35%, var(--tide-soft) 70%, var(--tide) 100%);
-    background-size: 200% 200%;
-    animation: liquidShift 7s ease-in-out infinite;
+    @apply btn bg-ember text-bg hover:bg-ember-soft hover:-translate-y-0.5;
   }
   .btn-line {
     @apply btn border border-line-strong text-bone hover:text-bone;
@@ -159,86 +146,15 @@ main:focus-visible {
     letter-spacing: -0.04em;
     line-height: 0.95;
   }
+  /* Single retained gradient-text class. Ration to one functional moment
+     per section (e.g. one italic word in the hero, the brand period in the
+     footer, the "live" emphasis in Skills). Never use as decoration. */
   .ember-glow {
     background: linear-gradient(180deg, var(--ember) 0%, var(--ember-soft) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
-  }
-  .tide-glow {
-    background: linear-gradient(180deg, var(--tide) 0%, var(--tide-soft) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-  }
-  /* Visible warm→cool gradient · both colors readable at default position.
-     Background-size kept tight so the whole sweep is in the text frame. */
-  .blend-glow {
-    background: linear-gradient(
-      100deg,
-      #ff5b22 0%,
-      #ff8a5b 22%,
-      #ffc59a 40%,
-      #f5f1e8 52%,
-      #93c5fd 60%,
-      #60a5fa 78%,
-      #3b82f6 100%
-    );
-    background-size: 130% 100%;
-    background-position: 30% 50%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    filter:
-      drop-shadow(0 0 24px rgba(255, 91, 34, 0.22))
-      drop-shadow(0 0 24px rgba(59, 130, 246, 0.22));
-    animation: blendShift 7s ease-in-out infinite;
-  }
-  /* Warm-led blend · orange dominant with a cool tail */
-  .warm-blend {
-    background: linear-gradient(
-      100deg,
-      #ff5b22 0%,
-      #ff8a5b 32%,
-      #ffc59a 58%,
-      #93c5fd 88%,
-      #60a5fa 100%
-    );
-    background-size: 130% 100%;
-    background-position: 25% 50%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    filter: drop-shadow(0 0 28px rgba(255, 91, 34, 0.28));
-    animation: blendShift 8s ease-in-out infinite;
-  }
-  /* Cool-led blend · blue dominant with a warm lead-in */
-  .cool-blend {
-    background: linear-gradient(
-      100deg,
-      #ffa07a 0%,
-      #ffc59a 18%,
-      #f5f1e8 32%,
-      #93c5fd 48%,
-      #60a5fa 70%,
-      #3b82f6 100%
-    );
-    background-size: 130% 100%;
-    background-position: 35% 50%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    filter: drop-shadow(0 0 28px rgba(59, 130, 246, 0.3));
-    animation: blendShift 8s ease-in-out infinite;
-  }
-  @keyframes blendShift {
-    0%, 100% { background-position: 20% 50%; }
-    50%      { background-position: 80% 50%; }
   }
   .marker {
     @apply font-mono text-[10px] uppercase tracking-[0.3em] text-bone-dim;
@@ -249,8 +165,6 @@ main:focus-visible {
 }
 
 /* ─────────── Liquid Glass ─────────── */
-/* A real Apple-style liquid-glass effect: backdrop blur + saturation, soft edge highlight,
-   subtle inner shadow, faint sheen sweep. Always pair with backdrop content (text or 3D). */
 .liquid-glass {
   position: relative;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.01) 100%);
@@ -280,10 +194,6 @@ main:focus-visible {
   animation: shimmerSweep 8s linear infinite;
   z-index: 0;
 }
-/* Children of a liquid-glass container sit above the ::before shimmer
-   by default. Skip elements that opt out with `data-glass-raw` or that
-   already declare an inline `position` (that's the bug that took six
-   rounds of nav tuning to surface — `:where()` keeps specificity at 0). */
 :where(.liquid-glass) > *:not([data-glass-raw]) {
   position: relative;
   z-index: 1;
@@ -294,44 +204,6 @@ main:focus-visible {
   backdrop-filter: blur(28px) saturate(200%) brightness(1.08);
   -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(1.08);
   border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-/* ─────────── Liquid Text ─────────── */
-/* For headlines that need refractive, lit-from-behind look */
-.liquid-text {
-  background: linear-gradient(
-    120deg,
-    rgba(245, 241, 232, 0.9) 0%,
-    rgba(255, 255, 255, 1) 25%,
-    rgba(245, 241, 232, 0.7) 50%,
-    rgba(255, 255, 255, 1) 75%,
-    rgba(245, 241, 232, 0.9) 100%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  filter: drop-shadow(0 0 32px rgba(255, 255, 255, 0.08));
-  animation: shimmerText 8s ease-in-out infinite;
-}
-
-.liquid-text-warm {
-  background: linear-gradient(
-    120deg,
-    rgba(255, 91, 34, 0.85) 0%,
-    rgba(255, 138, 91, 1) 25%,
-    rgba(255, 91, 34, 0.7) 50%,
-    rgba(96, 165, 250, 0.9) 75%,
-    rgba(59, 130, 246, 0.95) 100%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  filter: drop-shadow(0 0 28px rgba(255, 91, 34, 0.18));
-  animation: shimmerText 7s ease-in-out infinite;
 }
 
 /* Mockup window chrome */
@@ -406,6 +278,8 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-scrolling iframe { pointer-events: none; }
 
 /* ─────────── Code Player ─────────── */
+/* Syntax highlighting is a semantic use of colour, not branding —
+   Refero's devtool archetype allows polychromatic token colour. */
 .code-block {
   font-family: 'Geist Mono', ui-monospace, monospace;
   font-size: 0.85rem;

@@ -20,7 +20,7 @@ export default function BackToTop() {
           exit={{ opacity: 0, y: 12 }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Back to top"
-          className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-ember text-bg flex items-center justify-center hover:bg-ember-soft hover:-translate-y-0.5 transition-all shadow-ember"
+          className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-ember text-bg flex items-center justify-center hover:bg-ember-soft hover:-translate-y-0.5 transition-all"
         >
           <ArrowUp size={16} />
         </motion.button>

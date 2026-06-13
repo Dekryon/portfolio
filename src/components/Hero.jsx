@@ -96,7 +96,7 @@ export default function Hero() {
             transition={{ delay: 1.6, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="block overflow-hidden"
           >
-            <span className="block warm-blend">Gregory</span>
+            <span className="block">Gregory</span>
           </motion.span>
           <motion.span
             initial={{ y: '110%' }}
@@ -104,7 +104,7 @@ export default function Hero() {
             transition={{ delay: 1.75, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="block italic overflow-hidden"
           >
-            <span className="block cool-blend">Uku</span>
+            <span className="block ember-glow">Uku</span>
           </motion.span>
         </h1>
 
@@ -112,7 +112,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.4, duration: 0.8 }}
-          className="mt-8 max-w-lg text-bone-muted text-base sm:text-lg leading-relaxed pointer-events-auto liquid-glass rounded-2xl px-5 py-3 sm:px-6 sm:py-4"
+          className="mt-8 max-w-lg text-bone-muted text-base sm:text-lg leading-relaxed pointer-events-auto liquid-glass rounded-xl px-5 py-3 sm:px-6 sm:py-4"
         >
           A Software Engineering student building real-world{' '}
           <span className="text-bone">software</span>,{' '}
