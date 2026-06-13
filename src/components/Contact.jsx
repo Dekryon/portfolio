@@ -70,7 +70,7 @@ export default function Contact() {
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         className="h-display text-[16vw] sm:text-[10vw] lg:text-[10rem] leading-[0.9] text-bone mb-12"
       >
-        Let's <span className="italic blend-glow">build</span><br />
+        Let's <span className="italic">build</span><br />
         something real.
       </motion.h2>
 

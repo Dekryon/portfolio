@@ -116,20 +116,20 @@ export default function CodePlayer() {
   }
 
   return (
-    <div className="liquid-glass rounded-2xl overflow-hidden">
+    <div className="liquid-glass rounded-xl overflow-hidden">
       {/* Window chrome */}
       <div className="flex items-center gap-2 px-4 py-3 border-b border-line">
         <div className="flex gap-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-ember/60" />
           <span className="w-2.5 h-2.5 rounded-full bg-bone/15" />
-          <span className="w-2.5 h-2.5 rounded-full bg-tide/60" />
+          <span className="w-2.5 h-2.5 rounded-full bg-bone/30" />
         </div>
         <div className="flex-1 mx-4 max-w-sm h-6 rounded-md border border-line flex items-center justify-center px-3 bg-bg-soft/40">
           <span className="font-mono text-[10px] text-bone-dim truncate">
             {slide.label}
           </span>
         </div>
-        <span className="chip-tide !py-0.5">{slide.lang}</span>
+        <span className="chip !py-0.5">{slide.lang}</span>
       </div>
 
       {/* Code body */}

@@ -39,8 +39,8 @@ function LangCard({ name, level, note, hovered, onHover }) {
       }`}
     >
       <div
-        className={`liquid-glass rounded-2xl p-3 flex items-center gap-2.5 transition-all ${
-          isActive ? 'shadow-ember border-ember/50' : ''
+        className={`liquid-glass rounded-xl p-3 flex items-center gap-2.5 transition-all ${
+          isActive ? 'border-ember/50' : ''
         }`}
       >
         {Icon ? (
@@ -57,7 +57,7 @@ function LangCard({ name, level, note, hovered, onHover }) {
               level === 'Strong'
                 ? 'text-ember'
                 : level === 'Comfortable'
-                ? 'text-tide-soft'
+                ? 'text-bone-muted'
                 : 'text-bone-dim'
             }`}
           >
@@ -122,7 +122,7 @@ export default function LanguageScene() {
   const mobile = isMobile()
 
   return (
-    <div className="relative w-full h-[640px] sm:h-[680px] rounded-3xl overflow-hidden liquid-glass">
+    <div className="relative w-full h-[640px] sm:h-[680px] rounded-xl overflow-hidden liquid-glass">
       {/* Aurora background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 w-[70%] h-[70%] bg-ember/20 blur-[140px] rounded-full" />
@@ -150,7 +150,7 @@ export default function LanguageScene() {
         <div>
           <div className="marker mb-2">Stack / orbit</div>
           <div className="font-serif text-2xl text-bone leading-tight">
-            What I actually <span className="italic blend-glow">reach for.</span>
+            What I actually <span className="italic ember-glow">reach for.</span>
           </div>
         </div>
         <div className="hidden sm:block text-right">
@@ -176,7 +176,7 @@ export default function LanguageScene() {
         </div>
         <div className="hidden sm:flex items-center gap-2 marker">
           <span className="w-1.5 h-1.5 rounded-full bg-ember" /> Strong
-          <span className="w-1.5 h-1.5 rounded-full bg-tide-soft ml-2" /> Comfortable
+          <span className="w-1.5 h-1.5 rounded-full bg-bone-muted ml-2" /> Comfortable
           <span className="w-1.5 h-1.5 rounded-full bg-bone-dim ml-2" /> Learning
         </div>
       </div>

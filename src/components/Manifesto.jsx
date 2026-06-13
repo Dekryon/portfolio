@@ -71,7 +71,7 @@ export default function Manifesto() {
             transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="border-t border-line pt-5"
           >
-            <div className={`numeral text-5xl mb-2 ${i === 0 ? 'text-ember' : i === 1 ? 'cool-blend' : 'warm-blend'}`}>
+            <div className={`numeral text-5xl mb-2 ${i === 0 ? 'text-ember' : 'text-bone-muted'}`}>
               {p.k}
             </div>
             <div className="font-serif italic text-2xl text-bone mb-2">{p.v}</div>

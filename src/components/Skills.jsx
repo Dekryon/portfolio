@@ -34,7 +34,7 @@ function VisibleLanguageScene() {
       {visible && (
         <Suspense
           fallback={
-            <div className="h-[640px] sm:h-[680px] rounded-3xl liquid-glass" />
+            <div className="h-[640px] sm:h-[680px] rounded-xl liquid-glass" />
           }
         >
           <LanguageScene />
@@ -47,7 +47,7 @@ function VisibleLanguageScene() {
 const LEVEL_DOTS = { Strong: 3, Comfortable: 2, Learning: 1 }
 const LEVEL_COLOR = {
   Strong: 'bg-ember',
-  Comfortable: 'bg-tide-soft',
+  Comfortable: 'bg-bone-muted',
   Learning: 'bg-bone-dim'
 }
 
@@ -67,7 +67,7 @@ export default function Skills() {
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         className="h-display text-[10vw] sm:text-[6vw] lg:text-[5rem] leading-[1] text-bone max-w-4xl mb-4"
       >
-        What I reach for, <span className="italic blend-glow">honestly</span>.
+        What I reach for, <span className="italic">honestly</span>.
       </motion.h2>
 
       <motion.p
@@ -78,7 +78,7 @@ export default function Skills() {
         className="text-bone-muted text-lg max-w-2xl mb-14"
       >
         I'm a student · not pretending otherwise. Most of these are
-        <span className="text-tide-soft"> comfortable</span> or
+        <span className="text-bone-muted"> comfortable</span> or
         <span className="text-bone-dim"> still learning</span>, with a few I
         actually reach for on instinct.
       </motion.p>
@@ -122,7 +122,7 @@ export default function Skills() {
       <div className="mb-6">
         <div className="marker mb-2">Confidence ladder</div>
         <h3 className="h-display text-3xl sm:text-4xl text-bone leading-tight">
-          The <span className="italic tide-glow">honest</span> breakdown.
+          The <span className="italic">honest</span> breakdown.
         </h3>
       </div>
 

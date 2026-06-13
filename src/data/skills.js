@@ -118,6 +118,6 @@ export const FEATURED_LANGUAGES = [
 
 export const LEVEL_STYLES = {
   Strong: 'border-ember/40 bg-ember/10 text-ember',
-  Comfortable: 'border-tide/40 bg-tide/10 text-tide-soft',
+  Comfortable: 'border-line-strong bg-line text-bone-muted',
   Learning: 'border-line-strong bg-bone/5 text-bone-muted'
 }

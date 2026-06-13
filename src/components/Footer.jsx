@@ -10,7 +10,7 @@ export default function Footer() {
           href="#top"
           className="block h-display text-[28vw] sm:text-[24vw] leading-[0.85] text-bone-dim/30 hover:text-bone transition-colors duration-700"
         >
-          Gregory<span className="italic blend-glow">.</span>
+          Gregory<span className="italic ember-glow">.</span>
         </a>
       </div>
 
