@@ -213,7 +213,7 @@ export default function Navbar() {
                 background: 'linear-gradient(135deg, #ff5b22 0%, #ff8a5b 100%)'
               }}
             >
-              Hire me <ArrowUpRight size={14} />
+              Let's talk <ArrowUpRight size={14} />
             </a>
             <button
               onClick={() => setOpen(true)}

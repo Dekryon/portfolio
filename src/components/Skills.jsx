@@ -67,7 +67,7 @@ export default function Skills() {
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         className="h-display text-[10vw] sm:text-[6vw] lg:text-[5rem] leading-[1] text-bone max-w-4xl mb-4"
       >
-        What I reach for, <span className="italic">honestly</span>.
+        What I reach for to <span className="italic">ship fast</span>.
       </motion.h2>
 
       <motion.p
@@ -77,10 +77,10 @@ export default function Skills() {
         transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         className="text-bone-muted text-lg max-w-2xl mb-14"
       >
-        I'm a student · not pretending otherwise. Most of these are
-        <span className="text-bone-muted"> comfortable</span> or
-        <span className="text-bone-dim"> still learning</span>, with a few I
-        actually reach for on instinct.
+        Confidence levels are honest · not inflated.
+        <span className="text-bone"> Strong</span> means I build with it without a tutorial open.
+        <span className="text-bone-muted"> Comfortable</span> means I build but still google pieces.
+        <span className="text-bone-dim"> Learning</span> means I'm actively sharpening.
       </motion.p>
 
       {/* 3D languages orb · the centerpiece */}

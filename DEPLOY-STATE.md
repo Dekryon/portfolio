@@ -1,12 +1,15 @@
 # Deploy State · pick up here
 
-_Last audited: 2026-06-05_
+_Last audited: 2026-06-15_
 
 ## ✅ Live
 
-- **Production:** https://portfolio-qualityauto-signatures.vercel.app
+- **Production:** https://gregoryuku.com  (apex primary; `www.gregoryuku.com` → 308 → apex)
+- **Vercel preview URL:** https://portfolio-one-gamma-71.vercel.app (still works)
 - **Repo:** https://github.com/Dekryon/portfolio (public)
 - **Vercel project:** `portfolio` in team `qualityauto-signatures`
+- **Registrar:** Namecheap. DNS still on Namecheap BasicDNS · A `@` → `76.76.21.21`, CNAME `www` → `cname.vercel-dns.com.` Vercel nudges to switch to `216.198.79.1` / `80cb06b8d6fed39b.vercel-dns-017.com.` eventually · old records still work.
+- **Deployment Protection:** Disabled (was the 401 auth wall).
 - **CI/CD:** push to `main` auto-deploys to prod; PRs get preview URLs.
 - **Build:** clean — 342 KB gzipped main JS + Scene split into 22 KB gzip
   lazy chunk (via React.lazy on Hero.jsx). Project-grid `<img>`s have
@@ -32,15 +35,16 @@ _Last audited: 2026-06-05_
   aria-labelledby pointing at its `<h2>`.
 - **SEO** (commit `e9aad19`): Person JSON-LD schema; meta description
   trimmed to 156 chars (under Google's snippet cutoff).
-- **Real screenshots in place** (4 of 8 cards): `quality-auto.jpg`,
-  `portfolio.jpg`, `drive-thru.jpg` (Ordo operator portal),
-  `ai-saas-factory.jpg`. The other 4 cards render the hand-coded CSS
-  mock (terminal / dashboard / marketing) via the DeviceMockup onError
-  fallback — replace them by dropping a JPEG with the matching filename
-  into `public/projects/`.
-- **Card content updated:** the 'AI Agent Automation System' concept
-  card was replaced with a real **AI SaaS Factory** entry (live demo
-  at ai-saas-factory-ten.vercel.app, repo at Dekryon/ai-saas-factory).
+- **Real screenshots in place for all 5 shipping cards**: `ordo.jpg`
+  (useordo.org marketing landing · "Every call, answered."), `signal.jpg`
+  (signal-tracker-roan.vercel.app · 5-agent dashboard), `ai-saas-factory.jpg`,
+  `quality-auto.jpg`, `portfolio.jpg`. The 6th card (Gradesys) is `phase:
+  coming-soon` and renders the blueprint spec card · no fake screenshot.
+- **2026-06-15 redesign · investor-grade pass:** dropped 4 weak cards
+  (Web Coursework, Small Business Landing, Student Grades Manager C# console,
+  CS Study Companion placeholder). Added 2 real ones (Signal, Gradesys SaaS).
+  Re-framed Ordo to receptionist + useordo.org. Hero / About / Skills /
+  Manifesto rewritten to drop "student-first" framing.
 - **Portrait + grain texture wired:** `public/portrait.jpg` (1200x1500,
   4:5, sunset street shot) drives the About section; `public/grain.jpg`
   (256x256 photographed tile texture) drives the body-wide film-grain
@@ -48,26 +52,9 @@ _Last audited: 2026-06-05_
 - **Capture script** (`npm run screenshots`) covers 4 live URLs.
 - **Latest commit:** `0adfefe` — section aria-labelledby pass.
 
-## 🔥 Important — one production bug
-
-The production URL **returns HTTP 401 (Vercel auth wall)** to unauthenticated
-visitors. Your portfolio's own "Live demo" button is sending people to a
-sign-in page, and the screenshot script can't capture the site.
-
-**Fix (60 seconds):**
-1. https://vercel.com/qualityauto-signatures/portfolio/settings/deployment-protection
-2. Set **Vercel Authentication** to **Disabled** (or "Only Preview Deployments"
-   if you want previews gated but prod open).
-3. Save.
-
-After that:
-- `npm run screenshots` will fill in `public/projects/portfolio.jpg`.
-- The "Live demo" button on the portfolio card will actually open the site.
-
 ## ⏳ Still to do · in priority order
 
-### 1. Disable deployment protection (above) — blocks everything else
-### 2. Wire `RESEND_API_KEY` in Vercel
+### 1. Wire `RESEND_API_KEY` in Vercel
 The contact form already POSTs to `api/contact.js` (Vercel Function) → Resend
 → inbox, with a `mailto:` fallback when the key isn't set.
 
@@ -82,42 +69,23 @@ The contact form already POSTs to `api/contact.js` (Vercel Function) → Resend
 Subject line is `🔴 Portfolio inquiry — <name>`. Gmail filter to prioritize:
 search `subject:"Portfolio inquiry"` → Create filter → Star + Mark important.
 
-### 3. Re-shoot screenshots
-After step 1, run from this folder:
+### 2. Re-shoot screenshots
+Now that prod is public on `gregoryuku.com`, run from this folder:
 ```bash
 npm run screenshots
 git add public/projects && git commit -m "Add portfolio screenshot" && git push
 ```
 
-### 4. Drop the user-supplied assets in `/public/`
+### 3. Drop the user-supplied assets in `/public/`
 Each is referenced in code; missing files fall back to placeholders.
-- `portrait.jpg` (4:5) — see `public/portrait-instructions.md`
-- `resume.pdf` — until added, "Download Résumé" 404s
 - `og-image.jpg` (1200×630) — until added, social shares have no preview
+- `resume.pdf` — currently generated from `src/data` via `cf18d49`; replace with a real PDF when ready
 
 The drive-thru card has no public deployment yet — the CSS dashboard mock
 keeps rendering automatically until a real demo exists.
 
-### 5. Buy a domain (optional but recommended)
-
-All checked via Vercel Domains (2026-06-04):
-
-| Domain | Price/yr | Pick? |
-|---|---|---|
-| **gregoryuku.com** | **$11.25** | ✅ recommended — universal, matches the name, classic |
-| gregoryuku.dev | $9.99 | strong alt — signals "engineer" louder |
-| gregoryuku.app | $9.99 | weakest fit (the portfolio isn't an app) |
-| gregoryuku.me | $12.99 | weaker — `.me` reads more casual |
-| gregoryuku.co | $17.99 | no real benefit over `.com` |
-| gregoryuku.io | $37.99 | overpriced for what it gives |
-
-After buying:
-1. Vercel → project `portfolio` → Settings → Domains → add the domain.
-   (Vercel-purchased domains auto-wire DNS; no manual records.)
-2. Update `index.html` `og:url` / `canonical` to `https://gregoryuku.com/`.
-3. Update `portfolio` entry in `src/data/projects.js` — `demo` and `label`.
-4. Update `DEPLOY-STATE.md` and `README.md`.
-5. Cross-link from `3ddes.com` footer (your other site).
+### 4. Cross-link from `3ddes.com` footer
+Add a small "Also: gregoryuku.com" link to the 3ddes-website footer so the two sites point at each other.
 
 ## Optional · GitHub username rename
 

@@ -6,6 +6,9 @@
 //   npx playwright install chromium
 //   npm run screenshots
 //
+// Re-shoot just one file by passing its name:
+//   node scripts/capture-screenshots.mjs quality-auto.jpg
+//
 // Then review public/projects/, and commit + push:
 //   git add public/projects && git commit -m "Add project screenshots" && git push
 //
@@ -20,12 +23,18 @@ import { mkdir } from 'node:fs/promises'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const OUT_DIR = join(__dirname, '..', 'public', 'projects')
 
+// Optional filter — `node script.mjs quality-auto.jpg` re-shoots only that one.
+const ONLY = process.argv[2] || null
+
 // filename → live URL. Filenames match the `image` paths in src/data/projects.js.
 const SHOTS = [
-  { name: 'quality-auto.jpg', url: 'https://qualityautosignatures.com', settle: 9000 },
-  { name: 'portfolio.jpg', url: 'https://portfolio-qualityauto-signatures.vercel.app', settle: 5000 },
-  { name: 'drive-thru.jpg', url: 'https://ordo-portal-liart.vercel.app', settle: 5000 },
-  { name: 'ai-saas-factory.jpg', url: 'https://ai-saas-factory-ten.vercel.app', settle: 5000 }
+  { name: 'ordo.jpg', url: 'https://useordo.org', settle: 5000 },
+  { name: 'signal.jpg', url: 'https://signal-tracker-roan.vercel.app', settle: 5000 },
+  { name: 'ai-saas-factory.jpg', url: 'https://ai-saas-factory-ten.vercel.app', settle: 5000 },
+  // Quality Auto auto-rotates a hero carousel; 2500ms reliably lands on slide 1
+  // before the rotation advances, where the main headline is readable.
+  { name: 'quality-auto.jpg', url: 'https://qualityautosignatures.com', settle: 2500 },
+  { name: 'portfolio.jpg', url: 'https://gregoryuku.com', settle: 6500 }
 ]
 
 const WIDTH = 1600
@@ -41,8 +50,9 @@ async function main() {
     colorScheme: 'dark'
   })
 
+  const shots = ONLY ? SHOTS.filter((s) => s.name === ONLY) : SHOTS
   let ok = 0
-  for (const { name, url, settle = 3500 } of SHOTS) {
+  for (const { name, url, settle = 3500 } of shots) {
     const page = await context.newPage()
     try {
       console.log(`→ ${url}`)
@@ -69,7 +79,7 @@ async function main() {
   }
 
   await browser.close()
-  console.log(`\nDone — ${ok}/${SHOTS.length} captured.`)
+  console.log(`\nDone — ${ok}/${shots.length} captured.`)
   console.log('Review public/projects/, then commit + push to deploy.')
 }
 
