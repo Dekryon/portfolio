@@ -17,9 +17,11 @@ URL and saves it here at 1600×1000 with the right filename:
 
 | Project | URL captured | File |
 |---|---|---|
+| Ordo | useordo.org | `ordo.jpg` |
+| Signal | signal-tracker-roan.vercel.app | `signal.jpg` |
+| AI SaaS Factory | ai-saas-factory-ten.vercel.app | `ai-saas-factory.jpg` |
 | Quality Auto Signatures | qualityautosignatures.com | `quality-auto.jpg` |
-| This Portfolio | portfolio-qualityauto-signatures.vercel.app | `portfolio.jpg` |
-| AI Drive-Thru (Ordo) | ordo-portal-qualityauto-signatures.vercel.app | `drive-thru.jpg` |
+| This Portfolio | gregoryuku.com | `portfolio.jpg` |
 
 Then review the files and `git add public/projects && git commit && git push`.
 The other projects (no live URL) keep their CSS mock UI. Edit the `SHOTS` array
@@ -29,14 +31,12 @@ in the script to add or change URLs.
 
 | Project                             | File name                  | Recommended size |
 |------------------------------------|----------------------------|------------------|
-| AI Drive-Thru Ordering System      | `drive-thru.jpg`           | 1600 × 1000      |
+| Ordo                               | `ordo.jpg`                 | 1600 × 1000      |
+| Signal                             | `signal.jpg`               | 1600 × 1000      |
+| AI SaaS Factory                    | `ai-saas-factory.jpg`      | 1600 × 1000      |
 | Quality Auto Signatures            | `quality-auto.jpg`         | 1600 × 1000      |
 | This Portfolio                     | `portfolio.jpg`            | 1600 × 1000      |
-| Student Grades Manager             | `grades.jpg`               | 1600 × 1000      |
-| Web Development Coursework         | `web-coursework.jpg`       | 1600 × 1000      |
-| AI Agent Automation System         | `ai-agents.jpg`            | 1600 × 1000      |
-| Small Business Landing System      | `landing-kit.jpg`          | 1600 × 1000      |
-| CS Study Companion                 | `study.jpg`                | 1600 × 1000      |
+| Gradesys (coming soon)             | —                          | uses blueprint card |
 
 ## Tips
 - 16:10 aspect ratio looks cleanest in the browser frame

@@ -3,10 +3,10 @@ import { motion } from 'framer-motion'
 
 const WORDS = [
   ['I', 'design'], ['and'], ['ship'],
-  ['software'], ['that'], ['actually'], ['gets'], ['used'],
-  ['·'], ['web'], ['apps,'],
-  ['AI'], ['tools,'], ['real'], ['products,'],
-  ['from'], ['a'], ['student'], ['desk'], ['in'], ['Ontario.']
+  ['software'], ['that'], ['actually'], ['gets'], ['used.'],
+  ['Web'], ['apps,'], ['AI'], ['tools,'],
+  ['real'], ['products,'],
+  ['from'], ['Ontario,'], ['to'], ['anywhere'], ['that'], ['ships.']
 ]
 
 export default function Manifesto() {

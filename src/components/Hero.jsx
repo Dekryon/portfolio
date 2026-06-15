@@ -8,7 +8,7 @@ import { ArrowDown, ArrowUpRight } from 'lucide-react'
 // vignette gradient over the page bg until the WebGL canvas hydrates.
 const Scene = lazy(() => import('./Scene.jsx'))
 
-const ROLES = ['Software Engineer', 'Frontend Developer', 'AI Builder', 'Problem Solver']
+const ROLES = ['Software Engineer', 'Product Builder', 'AI Builder', 'Building · Ordo + Signal']
 
 export default function Hero() {
   const heroRef = useRef(null)
@@ -86,7 +86,7 @@ export default function Hero() {
           transition={{ delay: 1.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="eyebrow mb-6"
         >
-          Software engineering · 2026
+          Builder · Founder · 2026
         </motion.span>
 
         <h1 className="h-display text-[18vw] sm:text-[14vw] lg:text-[12rem] leading-[0.9]">
@@ -112,13 +112,12 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.4, duration: 0.8 }}
-          className="mt-8 max-w-lg text-bone-muted text-base sm:text-lg leading-relaxed pointer-events-auto liquid-glass rounded-xl px-5 py-3 sm:px-6 sm:py-4"
+          className="mt-8 max-w-xl text-bone-muted text-base sm:text-lg leading-relaxed pointer-events-auto liquid-glass rounded-xl px-5 py-3 sm:px-6 sm:py-4"
         >
-          A Software Engineering student building real-world{' '}
-          <span className="text-bone">software</span>,{' '}
-          <span className="text-bone">web apps</span>, and{' '}
-          <span className="text-bone">AI-powered tools</span> · from Trent
-          University, Ontario.
+          Building <span className="text-bone">products that ship</span> · AI tools, web apps, real-world software. Currently:{' '}
+          <span className="text-bone">Ordo</span>,{' '}
+          <span className="text-bone">Signal</span>, and{' '}
+          <span className="text-bone">AI SaaS Factory</span>.
         </motion.div>
       </motion.div>
 
@@ -136,7 +135,7 @@ export default function Hero() {
         >
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-ember animate-pulse" />
-            <span className="text-bone">Available · Internships · Freelance</span>
+            <span className="text-bone">Open · Partnerships · Investor intros</span>
           </div>
 
           {/* Liquid-glass pill — each new role slides in from the right */}

@@ -45,7 +45,7 @@ export default function About() {
             className="h-display text-[10vw] sm:text-[7vw] lg:text-[5rem] leading-[1] text-bone mb-12"
           >
             Builder<span className="italic">,</span><br />
-            in <span className="italic">training</span>.
+            <span className="italic">shipping</span>.
           </motion.h2>
 
           <motion.div
@@ -59,9 +59,9 @@ export default function About() {
               <span className="float-left text-5xl leading-[0.85] font-serif text-ember mr-2 mt-1.5">
                 I
               </span>
-              'm a Software Engineering student at Trent University, building
-              practical software, web apps, and AI-powered tools. Nigerian roots,
-              Ontario base, an unreasonable enthusiasm for shipping things.
+              build practical software, web apps, and AI products · currently while
+              finishing my Software Engineering degree at Trent University. Nigerian
+              roots, Ontario base, an unreasonable enthusiasm for shipping things.
             </p>
             <p>
               I work across the stack · semantic HTML and accessible UI on the
@@ -72,10 +72,10 @@ export default function About() {
               any specific framework.
             </p>
             <p>
-              I'm still growing. I grow by shipping. Every project here is
-              something I designed, built, and pushed past "almost done." When
-              I'm not writing code, I'm running a choir, producing music in
-              Ableton, or breaking down a basketball play.
+              I grow by shipping. Every project here is something I designed,
+              built, and pushed past "almost done." When I'm not writing code, I'm
+              running a choir, producing music in Ableton, or breaking down a
+              basketball play.
             </p>
           </motion.div>
 
@@ -88,10 +88,10 @@ export default function About() {
             className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-px bg-line border-y border-line"
           >
             {[
-              { k: 'BUILDS', v: '8+', s: 'shipped or in-flight' },
-              { k: 'YEARS', v: '2+', s: 'building software' },
+              { k: 'LIVE', v: '5', s: 'production sites' },
+              { k: 'BUILDING', v: '3', s: 'Ordo · Signal · SaaS Factory' },
               { k: 'STACK', v: '6+', s: 'languages & tools' },
-              { k: 'STATUS', v: '01', s: 'available now' }
+              { k: 'OPEN', v: '01', s: 'to partners + intros' }
             ].map((f, i) => (
               <div key={i} className="bg-bg p-5">
                 <div className="marker mb-2">{f.k}</div>
