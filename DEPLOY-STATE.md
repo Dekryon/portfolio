@@ -81,7 +81,7 @@ Each is referenced in code; missing files fall back to placeholders.
 - `og-image.jpg` (1200×630) — until added, social shares have no preview
 - `resume.pdf` — currently generated from `src/data` via `cf18d49`; replace with a real PDF when ready
 
-The drive-thru card has no public deployment yet — the CSS dashboard mock
+The Ordo card has no public deployment yet · the CSS dashboard mock
 keeps rendering automatically until a real demo exists.
 
 ### 4. Cross-link from `3ddes.com` footer

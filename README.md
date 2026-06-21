@@ -163,7 +163,7 @@ portfolio/
 │   ├── resume.pdf                    (you provide)
 │   └── projects/
 │       ├── README.md
-│       ├── drive-thru.jpg            (you provide)
+│       ├── ordo.jpg                  (you provide)
 │       ├── quality-auto.jpg          (you provide)
 │       └── ...
 ├── src/
