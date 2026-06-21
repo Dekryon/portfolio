@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const SLIDES = [
   {
-    label: 'AI Drive-Thru · order intent',
+    label: 'Ordo · order intent',
     lang: 'TypeScript',
     lines: [
       [{ t: 'kw', v: 'export async function' }, { t: 'fn', v: ' parseOrder' }, { t: 'punc', v: '(' }, { t: 'var', v: 'audio' }, { t: 'punc', v: ': ' }, { t: 'kw', v: 'Buffer' }, { t: 'punc', v: ') {' }],

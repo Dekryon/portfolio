@@ -12,7 +12,7 @@ const ITEMS = [
   {
     label: 'Coding lately',
     icon: Code,
-    title: 'AI Drive-Thru',
+    title: 'Ordo',
     sub: 'Speech-to-order pipeline · confidence loop',
     accent: '#f5f1e8'
   },
