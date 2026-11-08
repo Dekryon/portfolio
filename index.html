@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#08080a" />
+    <meta name="theme-color" content="#f4f0e6" />
 
-    <title>Gregory Uku — Software Engineering Student & Builder</title>
+    <title>Gregory Uku · Software Engineering Student & Builder</title>
 
     <meta
       name="description"
-      content="Gregory Uku — Software Engineering student at Trent University, shipping practical web apps and AI tools. Open to internships, freelance, and collaboration."
+      content="Gregory Uku · Software Engineering student at Trent University, shipping practical web apps and AI tools. Open to internships, freelance, and collaboration."
     />
     <meta name="author" content="Gregory Uku" />
     <meta
@@ -20,7 +20,7 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://gregoryuku.com/" />
-    <meta property="og:title" content="Gregory Uku — Software Engineering Student & Builder" />
+    <meta property="og:title" content="Gregory Uku · Software Engineering Student & Builder" />
     <meta
       property="og:description"
       content="I design and ship practical software, web apps, and AI-powered tools. Trent University. Available for internships, freelance, and collaboration."
@@ -28,7 +28,7 @@
     <meta property="og:image" content="https://gregoryuku.com/og-image.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Gregory Uku — Software Engineering Student & Builder" />
+    <meta name="twitter:title" content="Gregory Uku · Software Engineering Student & Builder" />
     <meta name="twitter:description" content="Software engineer in training. Builder of real things." />
     <meta name="twitter:image" content="https://gregoryuku.com/og-image.jpg" />
 
@@ -62,21 +62,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Non-blocking font load. Only the weights actually used by the JSX
-         survive here — 400/500/600 for both Geist families. The audit caught
-         that 300+700 were being downloaded with no rule using them. -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap"
-      />
-    </noscript>
+    <!-- Faces and why: Source Serif 4 for display (optical sizes, true italic, reads like print),
+         Schibsted Grotesk for text (drawn for a newspaper group, fits an index of work),
+         IBM Plex Mono for years and labels (tabular figures). -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&display=swap" />
   </head>
   <body>
     <div id="root"></div>

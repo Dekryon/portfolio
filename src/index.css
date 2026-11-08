@@ -3,323 +3,77 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
-  --bg: #08080a;
-  --bone: #f5f1e8;
-  --ember: #ff5b22;
-  --tide: #3b82f6;
-  --tide-soft: #60a5fa;
-  --ember-soft: #ff8a5b;
+  color-scheme: light;
 }
 
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-html, body {
-  background-color: var(--bg);
-  color: var(--bone);
-  font-family: 'Geist', system-ui, sans-serif;
-  overflow-x: hidden;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+  overflow-x: clip;
 }
 
 body {
-  min-height: 100vh;
-  font-feature-settings: 'ss01', 'cv11';
-  background-image:
-    radial-gradient(ellipse 80% 50% at 80% -5%, rgba(255, 91, 34, 0.14), transparent 60%),
-    radial-gradient(ellipse 70% 50% at 15% 30%, rgba(59, 130, 246, 0.12), transparent 60%),
-    radial-gradient(ellipse 70% 50% at 85% 70%, rgba(59, 130, 246, 0.1), transparent 60%),
-    radial-gradient(ellipse 70% 50% at 15% 100%, rgba(255, 91, 34, 0.1), transparent 60%);
+  background: theme('colors.paper');
+  color: theme('colors.ink.DEFAULT');
+  font-family: theme('fontFamily.sans');
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: var(--ember);
-  color: var(--bg);
+  background: theme('colors.accent.DEFAULT');
+  color: theme('colors.paper');
 }
 
-/* Skip-to-content — visible only when focused via keyboard tab. */
-.skip-to-content {
+:focus-visible {
+  outline: 2px solid theme('colors.accent.DEFAULT');
+  outline-offset: 3px;
+}
+
+.skip-link {
   position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10000;
-  transform: translateY(-110%);
-  padding: 12px 18px;
-  background: var(--ember);
-  color: var(--bg);
-  font-family: 'Geist Mono', ui-monospace, monospace;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  border-bottom-right-radius: 2px;
-  transition: transform 200ms ease;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 10px 14px;
+  background: theme('colors.ink.DEFAULT');
+  color: theme('colors.paper');
+  transform: translateY(-200%);
 }
-.skip-to-content:focus-visible {
-  transform: translateY(0);
-  outline: none;
+.skip-link:focus-visible {
+  transform: none;
 }
-
-main:focus-visible {
-  outline: none;
-}
-
-/* Visually-hidden helper for screen-reader-only labels */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* Grain overlay */
-.grain::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.18;
-  mix-blend-mode: overlay;
-  background-image: url('/grain.jpg');
-  background-size: 200px 200px;
-  background-repeat: repeat;
-}
-
-/* Custom scrollbar — solid ember (single-accent rationing). */
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 91, 34, 0.5);
-  border-radius: 0;
-}
-::-webkit-scrollbar-thumb:hover { background: var(--ember); }
 
 @layer components {
-  .container-x {
-    @apply max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16;
-  }
-  .chip {
-    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider rounded-sm border border-line text-bone-muted;
-    background-color: rgba(245, 241, 232, 0.02);
-  }
-  .chip-ember {
-    @apply chip border-ember/40 bg-ember/10 text-ember;
-  }
-  .btn {
-    @apply inline-flex items-center gap-3 px-6 py-3.5 font-mono text-xs uppercase tracking-[0.15em] transition-all duration-300 rounded-full;
-  }
-  .btn-ember {
-    @apply btn bg-ember text-bg hover:bg-ember-soft hover:-translate-y-0.5;
-  }
-  .btn-line {
-    @apply btn border border-line-strong text-bone hover:text-bone;
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    background: linear-gradient(135deg, rgba(245, 241, 232, 0.06), rgba(245, 241, 232, 0.01));
-  }
-  .btn-line:hover {
-    border-color: var(--ember);
-    color: var(--ember);
-  }
-  .eyebrow {
-    @apply inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-bone-dim;
-  }
-  .eyebrow::before {
-    content: '';
-    display: inline-block;
-    width: 28px;
-    height: 1px;
-    background: currentColor;
-    opacity: 0.6;
-  }
-  .h-display {
-    font-family: 'Instrument Serif', serif;
-    font-weight: 400;
-    letter-spacing: -0.04em;
-    line-height: 0.95;
-  }
-  /* Single retained gradient-text class. Ration to one functional moment
-     per section (e.g. one italic word in the hero, the brand period in the
-     footer, the "live" emphasis in Skills). Never use as decoration. */
-  .ember-glow {
-    background: linear-gradient(180deg, var(--ember) 0%, var(--ember-soft) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-  }
-  .marker {
-    @apply font-mono text-[10px] uppercase tracking-[0.3em] text-bone-dim;
+  .wrap {
+    @apply mx-auto w-full max-w-[1180px] px-5 sm:px-8;
   }
   .section {
-    @apply relative container-x py-24 sm:py-32 lg:py-40;
+    @apply wrap py-16 sm:py-24;
+  }
+  .label {
+    @apply font-mono text-[12px] uppercase tracking-[0.12em] text-ink-3;
+  }
+  .h2 {
+    @apply font-serif text-[2.25rem] sm:text-5xl leading-[1.05] tracking-[-0.015em];
+    text-wrap: balance;
+  }
+  .btn {
+    @apply inline-flex items-center gap-2 rounded px-5 py-3 text-[15px] font-medium transition-colors min-h-[44px];
+  }
+  .btn-solid {
+    @apply btn bg-ink text-paper hover:bg-accent;
+  }
+  .link {
+    @apply underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent;
   }
 }
 
-/* ─────────── Liquid Glass ─────────── */
-.liquid-glass {
-  position: relative;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.01) 100%);
-  backdrop-filter: blur(22px) saturate(180%) brightness(1.05);
-  -webkit-backdrop-filter: blur(22px) saturate(180%) brightness(1.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
-    0 8px 32px rgba(0, 0, 0, 0.4);
-  overflow: hidden;
-}
-.liquid-glass::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 0%,
-    transparent 30%,
-    rgba(255, 255, 255, 0.05) 50%,
-    transparent 70%,
-    transparent 100%
-  );
-  background-size: 200% 100%;
-  pointer-events: none;
-  animation: shimmerSweep 8s linear infinite;
-  z-index: 0;
-}
-:where(.liquid-glass) > *:not([data-glass-raw]) {
-  position: relative;
-  z-index: 1;
-}
-
-.liquid-glass-strong {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
-  backdrop-filter: blur(28px) saturate(200%) brightness(1.08);
-  -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(1.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-/* Mockup window chrome */
-.mockup-window {
-  @apply relative rounded-xl overflow-hidden border border-line-strong bg-bg-soft shadow-cinema;
-}
-
-/* Reveal on scroll */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Marquee */
-.marquee {
-  display: flex;
-  overflow: hidden;
-  user-select: none;
-  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
-}
-.marquee__track {
-  display: flex;
-  gap: 4rem;
-  animation: marquee 50s linear infinite;
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-  .reveal { opacity: 1; transform: none; }
-}
-
-/* Focus */
-:focus-visible {
-  outline: 2px solid var(--ember);
-  outline-offset: 4px;
-}
-
-.numeral {
-  font-family: 'Instrument Serif', serif;
-  font-style: italic;
-  font-feature-settings: 'tnum';
-}
-
-.divider-line {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(245, 241, 232, 0.16), transparent);
-}
-
-/* Lenis */
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-.lenis.lenis-stopped { overflow: hidden; }
-.lenis.lenis-scrolling iframe { pointer-events: none; }
-
-/* ─────────── Code Player ─────────── */
-/* Syntax highlighting is a semantic use of colour, not branding —
-   Refero's devtool archetype allows polychromatic token colour. */
-.code-block {
-  font-family: 'Geist Mono', ui-monospace, monospace;
-  font-size: 0.85rem;
-  line-height: 1.65;
-  color: rgba(245, 241, 232, 0.85);
-}
-.code-block .tok-kw { color: #60a5fa; }
-.code-block .tok-fn { color: #ff8a5b; }
-.code-block .tok-str { color: #93c5fd; }
-.code-block .tok-num { color: #ffa07a; }
-.code-block .tok-com { color: rgba(245, 241, 232, 0.35); font-style: italic; }
-.code-block .tok-var { color: rgba(245, 241, 232, 0.95); }
-.code-block .tok-prop { color: #ff5b22; }
-.code-block .tok-punc { color: rgba(245, 241, 232, 0.5); }
-.code-block .ln {
-  display: inline-block;
-  width: 2rem;
-  color: rgba(245, 241, 232, 0.18);
-  user-select: none;
-  text-align: right;
-  margin-right: 1rem;
-}
-
-.caret {
-  display: inline-block;
-  width: 0.6em;
-  height: 1em;
-  background: var(--ember);
-  vertical-align: middle;
-  animation: blink 1s steps(2) infinite;
-}
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  50.01%, 100% { opacity: 0; }
-}
-
-/* Mobile perf · skip heavy filters on small screens */
-@media (max-width: 640px) {
-  .liquid-glass, .liquid-glass-strong {
-    backdrop-filter: blur(14px) saturate(160%);
-    -webkit-backdrop-filter: blur(14px) saturate(160%);
   }
 }

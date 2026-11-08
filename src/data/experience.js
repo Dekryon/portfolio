@@ -1,5 +1,13 @@
 export const EXPERIENCE = [
   {
+    id: 'ordo',
+    role: 'Founder',
+    org: 'Ordo',
+    period: '2026 · Present',
+    summary:
+      'Design, build and sell an AI phone receptionist for small businesses. Operating as a sole proprietor in Ontario.'
+  },
+  {
     id: 'student-housing',
     role: 'Student Housing · Customer Service',
     org: 'Trent University',

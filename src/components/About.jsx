@@ -1,105 +1,59 @@
-import { motion } from 'framer-motion'
-import Portrait from './Portrait.jsx'
+import { useState } from 'react'
 
 export default function About() {
+  const [noPhoto, setNoPhoto] = useState(false)
+
   return (
-    <section id="about" aria-labelledby="about-heading" className="relative container-x py-24 sm:py-32">
-      <div className="flex items-center gap-4 mb-16">
-        <span className="marker">02 / Identity</span>
-        <div className="flex-1 h-px bg-line" />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-        {/* Portrait · sticky on desktop */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 lg:sticky lg:top-28"
-        >
-          <Portrait />
-
-          <div className="mt-6 grid grid-cols-2 gap-4 font-mono text-[10px] uppercase tracking-[0.2em] text-bone-dim">
-            <div>
-              <div className="text-bone">Gregory Uku</div>
-              <div>Software Engineer</div>
-              <div>In training</div>
+    <section id="about" aria-labelledby="about-title" className="section border-t border-line">
+      <div className="grid gap-10 md:grid-cols-12 md:gap-14">
+        <div className="md:col-span-4">
+          {noPhoto ? (
+            <div className="grid aspect-[4/5] place-items-center rounded bg-panel font-serif text-6xl text-ink-3">
+              GU
             </div>
-            <div className="text-right">
-              <div>Trent University</div>
-              <div>Peterborough, ON</div>
-              <div>2023 · Present</div>
-            </div>
+          ) : (
+            <img
+              src="/portrait.jpg"
+              alt="Gregory Uku"
+              width="640"
+              height="800"
+              loading="lazy"
+              onError={() => setNoPhoto(true)}
+              className="aspect-[4/5] w-full rounded object-cover"
+            />
+          )}
+        </div>
+
+        <div className="md:col-span-8">
+          <h2 id="about-title" className="h2">
+            About
+          </h2>
+          <div className="mt-8 max-w-[38rem] space-y-5 text-ink-2 [text-wrap:pretty]">
+            <p>
+              I'm finishing a Software Engineering degree at Trent University and
+              building products alongside it. My family is Nigerian and I live in
+              Ontario, so two of the sites here serve people I know: a car dealer in
+              Lagos and students at Trent.
+            </p>
+            <p>
+              I work across the stack: accessible, semantic front ends, and the
+              APIs and databases underneath. I care most about clear design, secure
+              code, and whether the thing is useful to the person using it.
+            </p>
+            <p>
+              Outside code I direct a community choir, produce music in Ableton,
+              and fix laptops for friends and family.
+            </p>
           </div>
-        </motion.div>
 
-        {/* Story */}
-        <div className="lg:col-span-7">
-          <motion.h2
-            id="about-heading"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="h-display text-[10vw] sm:text-[7vw] lg:text-[5rem] leading-[1] text-bone mb-12"
-          >
-            Builder<span className="italic">,</span><br />
-            <span className="italic">shipping</span>.
-          </motion.h2>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="space-y-6 text-bone-muted text-lg leading-[1.7] max-w-2xl"
-          >
-            <p>
-              <span className="float-left text-5xl leading-[0.85] font-serif text-ember mr-2 mt-1.5">
-                I
-              </span>
-              build practical software, web apps, and AI products · currently while
-              finishing my Software Engineering degree at Trent University. Nigerian
-              roots, Ontario base, an unreasonable enthusiasm for shipping things.
-            </p>
-            <p>
-              I work across the stack · semantic HTML and accessible UI on the
-              front, real backend logic and APIs underneath. I care about{' '}
-              <span className="text-bone">clean design</span>,{' '}
-              <span className="text-bone">secure code</span>, and{' '}
-              <span className="text-bone">real-world usefulness</span> more than
-              any specific framework.
-            </p>
-            <p>
-              I grow by shipping. Every project here is something I designed,
-              built, and pushed past "almost done." When I'm not writing code, I'm
-              running a choir, producing music in Ableton, or breaking down a
-              basketball play.
-            </p>
-          </motion.div>
-
-          {/* Quick facts row */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-px bg-line border-y border-line"
-          >
-            {[
-              { k: 'LIVE', v: '5', s: 'production sites' },
-              { k: 'BUILDING', v: '3', s: 'Ordo · Signal · SaaS Factory' },
-              { k: 'STACK', v: '6+', s: 'languages & tools' },
-              { k: 'OPEN', v: '01', s: 'to partners + intros' }
-            ].map((f, i) => (
-              <div key={i} className="bg-bg p-5">
-                <div className="marker mb-2">{f.k}</div>
-                <div className="numeral text-4xl text-bone mb-1">{f.v}</div>
-                <div className="text-xs text-bone-dim">{f.s}</div>
-              </div>
-            ))}
-          </motion.div>
+          <dl className="mt-10 grid max-w-[38rem] grid-cols-[7rem_1fr] gap-y-3 border-t border-line pt-6 text-[15px]">
+            <dt className="label pt-0.5">Studying</dt>
+            <dd>B.Sc. Computer Science, Trent University, 2023 to present</dd>
+            <dt className="label pt-0.5">Building</dt>
+            <dd>Ordo and Gradus</dd>
+            <dt className="label pt-0.5">Open to</dt>
+            <dd>Internships, freelance work, and partnerships</dd>
+          </dl>
         </div>
       </div>
     </section>

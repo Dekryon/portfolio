@@ -29,12 +29,10 @@ const ONLY = process.argv[2] || null
 // filename → live URL. Filenames match the `image` paths in src/data/projects.js.
 const SHOTS = [
   { name: 'ordo.jpg', url: 'https://useordo.org', settle: 5000 },
-  { name: 'signal.jpg', url: 'https://signal-tracker-roan.vercel.app', settle: 5000 },
-  { name: 'ai-saas-factory.jpg', url: 'https://ai-saas-factory-ten.vercel.app', settle: 5000 },
-  // Quality Auto auto-rotates a hero carousel; 2500ms reliably lands on slide 1
-  // before the rotation advances, where the main headline is readable.
-  { name: 'quality-auto.jpg', url: 'https://qualityautosignatures.com', settle: 2500 },
-  { name: 'portfolio.jpg', url: 'https://gregoryuku.com', settle: 6500 }
+  { name: 'gradus.jpg', url: 'https://gradus.ca', settle: 4000 },
+  { name: 'trentpulse.jpg', url: 'https://trentpulse.vercel.app', settle: 6000 },
+  // Quality Auto auto-rotates a hero carousel; 2500ms lands on slide 1.
+  { name: 'quality-auto.jpg', url: 'https://www.qualityautosignatures.com', settle: 2500 }
 ]
 
 const WIDTH = 1600
@@ -43,7 +41,7 @@ const HEIGHT = 1000 // 16:10 — matches the browser mockup frame
 async function main() {
   await mkdir(OUT_DIR, { recursive: true })
 
-  const browser = await chromium.launch()
+  const browser = await chromium.launch({ channel: 'chrome' })
   const context = await browser.newContext({
     viewport: { width: WIDTH, height: HEIGHT },
     deviceScaleFactor: 2, // retina-crisp; drop to 1 for exactly 1600×1000
